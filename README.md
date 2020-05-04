@@ -1,4 +1,4 @@
-Our SWT2 University project
+# Our SWT2 University project
 
 
 
@@ -6,10 +6,10 @@ Our SWT2 University project
 
 
 
-##TODO LIST
+## TODO LIST
 
-[] start working
+-[ ] start working
 
-[] create Postgres database\
-[] implement dao interface and class\
-[] basic table creation 
+-[ ] create Postgres database\
+-[ ] implement dao interface and class\
+-[ ] basic table creation 
