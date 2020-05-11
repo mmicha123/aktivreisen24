@@ -9,7 +9,7 @@ import java.util.UUID;
 
 
 @Repository("fakeDao")
-public class FakerUserDataAccessService implements UserDao {
+public class FakerUserDataAccessServiceTest implements UserDao_test {
 
    private static List<User> UserList  = new ArrayList<>();
 

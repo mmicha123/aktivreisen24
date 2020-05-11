@@ -4,7 +4,7 @@ import net.aktivreisen24.model.User;
 
 import java.util.UUID;
 
-public interface UserDao {
+public interface UserDao_test {
 
     int insertUser(UUID id, User user);
 
