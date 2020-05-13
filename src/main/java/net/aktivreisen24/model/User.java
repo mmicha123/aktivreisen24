@@ -4,17 +4,17 @@ import java.util.UUID;
 
 public class User {
 
-    private final String firstName;
-    private final String surname;
-    private final UUID id;
+    private String firstName;
+    private String surname;
+    private UUID id;
 
-    private final String street;
-    private final Short houseNumber;
-    private final String location;
+    private String street;
+    private Short houseNumber;
+    private String location;
 
-    private final int phoneNumber;
+    private int phoneNumber;
 
-    private final PaymentInfo pi;
+    private PaymentInfo pi;
 
     public User(String firstName, String surname, UUID id, String street, Short houseNumber, String location, int phoneNumber, PaymentInfo pi) {
         this.firstName = firstName;
@@ -55,5 +55,35 @@ public class User {
         return phoneNumber;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setHouseNumber(Short houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPi(PaymentInfo pi) {
+        this.pi = pi;
+    }
 }

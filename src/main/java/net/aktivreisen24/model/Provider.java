@@ -2,8 +2,8 @@ package net.aktivreisen24.model;
 
 public class Provider {
 
-    private final String name;
-    private final double rating;
+    private String name;
+    private double rating;
 
     public Provider(String name, double rating) {
         this.name = name;
@@ -21,5 +21,11 @@ public class Provider {
     //List für vacation/activity
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 }

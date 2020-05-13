@@ -2,16 +2,15 @@ package net.aktivreisen24.model;
 
 public class Activity {
 
-    private final String street;
-    private final Short houseNumber;
-    private final String location;
+    private String street;
+    private Short houseNumber;
+    private String location;
 
-    private final double rating;
-    private final String generelInfo;
-    private final String description;
+    private double rating;
+    private String generelInfo;
+    private String description;
 
     //availabilty und comments fehlt
-
 
     public Activity(String street, Short houseNumber, String location, double rating, String generelInfo, String description) {
         this.street = street;
@@ -44,6 +43,30 @@ public class Activity {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setHouseNumber(Short houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public void setGenerelInfo(String generelInfo) {
+        this.generelInfo = generelInfo;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 
