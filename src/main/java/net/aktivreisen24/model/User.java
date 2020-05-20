@@ -1,54 +1,89 @@
 package net.aktivreisen24.model;
 
+import java.util.UUID;
+
 public class User {
 
-    private final long user_id;
-    private final String first_name;
-    private final String last_name;
-    private String country;
-    private String address;
-    private int phone;
+    private String firstName;
+    private String surname;
+    private UUID id;
 
-    public long getUser_id() {
-        return user_id;
+    private String street;
+    private Short houseNumber;
+    private String location;
+
+    private int phoneNumber;
+
+    private PaymentInfo pi;
+
+    public User(String firstName, String surname, UUID id, String street, Short houseNumber, String location, int phoneNumber, PaymentInfo pi) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.id = id;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.location = location;
+        this.phoneNumber = phoneNumber;
+        this.pi = pi;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public UUID getId(){
+        return id;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getFirstName(){
+        return firstName;
     }
 
-    public String getCountry() {
-        return country;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public String getStreet() {
+        return street;
     }
 
-    public String getAddress() {
-        return address;
+    public Short getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getLocation() {
+        return location;
     }
 
-    public int getPhone() {
-        return phone;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public User(long user_id, String first_name, String last_name) {
-        this.user_id = user_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setHouseNumber(Short houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPi(PaymentInfo pi) {
+        this.pi = pi;
+    }
 }
