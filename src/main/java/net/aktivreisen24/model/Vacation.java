@@ -2,6 +2,7 @@ package net.aktivreisen24.model;
 
 public class Vacation {
 
+    private final long id;
     private String street;
     private Short houseNumber;
     private String location;
@@ -13,7 +14,8 @@ public class Vacation {
     //availabilty und comments fehlt
 
 
-    public Vacation(String street, Short houseNumber, String location, double rating, String generelInfo, String description) {
+    public Vacation(long id, String street, Short houseNumber, String location, double rating, String generelInfo, String description) {
+        this.id = id;
         this.street = street;
         this.houseNumber = houseNumber;
         this.location = location;
@@ -21,6 +23,7 @@ public class Vacation {
         this.generelInfo = generelInfo;
         this.description = description;
     }
+    public long getId() {return id;}
 
     public String getStreet() {
         return street;

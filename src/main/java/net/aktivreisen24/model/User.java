@@ -3,7 +3,7 @@ package net.aktivreisen24.model;
 
 public class User {
 
-    private final int id;
+    private final long id;
     private String firstName;
     private String surname;
 
@@ -14,7 +14,7 @@ public class User {
 
     private PaymentInfo pi;
 
-    public User(int id, String firstName, String surname, String address, String country, int phoneNumber) {
+    public User(long id, String firstName, String surname, String address, String country, int phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -23,7 +23,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 

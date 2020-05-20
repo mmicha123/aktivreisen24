@@ -2,12 +2,19 @@ package net.aktivreisen24.model;
 
 public class Provider {
 
+
+
+    private final long id;
     private String name;
     private double rating;
 
-    public Provider(String name, double rating) {
+    public Provider(long id, String name, double rating) {
+        this.id = id;
         this.name = name;
         this.rating = rating;
+    }
+    public long getId() {
+        return id;
     }
 
     public double getRating() {
