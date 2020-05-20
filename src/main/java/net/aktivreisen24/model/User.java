@@ -1,33 +1,29 @@
 package net.aktivreisen24.model;
 
-import java.util.UUID;
 
 public class User {
 
+    private final int id;
     private String firstName;
     private String surname;
-    private UUID id;
 
-    private String street;
-    private Short houseNumber;
-    private String location;
+    private String address;
+    private String country;
 
     private int phoneNumber;
 
     private PaymentInfo pi;
 
-    public User(String firstName, String surname, UUID id, String street, Short houseNumber, String location, int phoneNumber, PaymentInfo pi) {
+    public User(int id, String firstName, String surname, String address, String country, int phoneNumber) {
+        this.id = id;
         this.firstName = firstName;
         this.surname = surname;
-        this.id = id;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.location = location;
+        this.address = address;
+        this.country = country;
         this.phoneNumber = phoneNumber;
-        this.pi = pi;
     }
 
-    public UUID getId(){
+    public int getId(){
         return id;
     }
 
@@ -39,16 +35,12 @@ public class User {
         return surname;
     }
 
-    public String getStreet() {
-        return street;
+    public String getAddress() {
+        return address;
     }
 
-    public Short getHouseNumber() {
-        return houseNumber;
-    }
-
-    public String getLocation() {
-        return location;
+    public String getCountry() {
+        return country;
     }
 
     public int getPhoneNumber() {
@@ -63,20 +55,12 @@ public class User {
         this.surname = surname;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setHouseNumber(Short houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public void setPhoneNumber(int phoneNumber) {
