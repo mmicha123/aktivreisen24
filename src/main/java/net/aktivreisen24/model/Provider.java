@@ -2,13 +2,11 @@ package net.aktivreisen24.model;
 
 public class Provider {
 
-
-
     private final long id;
     private String name;
-    private double rating;
+    private float rating;
 
-    public Provider(long id, String name, double rating) {
+    public Provider(long id, String name, float rating) {
         this.id = id;
         this.name = name;
         this.rating = rating;
@@ -17,7 +15,7 @@ public class Provider {
         return id;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
@@ -32,7 +30,7 @@ public class Provider {
         this.name = name;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 }
