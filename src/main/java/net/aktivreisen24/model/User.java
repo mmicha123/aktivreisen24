@@ -40,8 +40,6 @@ public class User {
         return id_acc;
     }
 
-    ;
-
     public String getFirstName() {
         return firstName;
     }
