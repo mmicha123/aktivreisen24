@@ -14,4 +14,6 @@ public interface AccountDao{
     List<Account> findAll();
     Optional<Account> findById(long id);
 
+    Optional<Account> findByLogin(String pw, String mail);
+
 }

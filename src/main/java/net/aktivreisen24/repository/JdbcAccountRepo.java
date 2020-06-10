@@ -80,9 +80,29 @@ public class JdbcAccountRepo implements AccountDao {
                         rs.getString("email")));
     }
 
+    /**
+     * Find specific Account by id
+     * @param id id of Account to find
+     * @return Optional Account with this param id
+     */
     @Override
     public Optional<Account> findById(long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM ar_account WHERE id = ?", new Object[]{id}, (rs, rowNum) ->
+        return jdbcTemplate.queryForObject("SELECT * FROM ar_account WHERE acc_id = ?", new Object[]{id}, (rs, rowNum) ->
+                Optional.of(new Account(
+                        rs.getLong("acc_id"),
+                        rs.getString("passhash"),
+                        rs.getString("email"))));
+    }
+
+    /**
+     * Is used to find Account at login
+     * @param pw passhash from login
+     * @param mail mail from login
+     * @return Optional Account check if found!
+     */
+    @Override
+    public Optional<Account> findByLogin(String pw, String mail) {
+        return jdbcTemplate.queryForObject("SELECT * FROM ar_account WHERE passhash = ? AND email = ?", new Object[]{pw, mail}, (rs, rowNum) ->
                 Optional.of(new Account(
                         rs.getLong("acc_id"),
                         rs.getString("passhash"),
