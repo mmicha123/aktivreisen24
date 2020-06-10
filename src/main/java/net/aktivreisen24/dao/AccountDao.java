@@ -5,13 +5,17 @@ import net.aktivreisen24.model.Account;
 import java.util.List;
 import java.util.Optional;
 
-public interface AccountDao{
+public interface AccountDao {
     int countDebug();
+
     long save(Account obj);
+
     int update(Account obj);
+
     int deleteById(long id);
 
     List<Account> findAll();
+
     Optional<Account> findById(long id);
 
     Optional<Account> findByLogin(String pw, String mail);

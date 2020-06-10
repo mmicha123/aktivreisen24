@@ -81,6 +81,7 @@ public class JdbcUserRepo implements UserDao {
 
     /**
      * NOT IN USE
+     *
      * @return NULL
      */
     @Override
@@ -90,12 +91,13 @@ public class JdbcUserRepo implements UserDao {
 
     /**
      * Find specific User by id
+     *
      * @param id user id of User to find
      * @return Optional User with this user id
      */
     @Override
     public Optional<User> findByUserId(long id) {
-        return jdbcTemplate.queryForObject("SELECT * from ar_user WHERE user_id = ?", new Object[]{id}, (rs, rowNum)->
+        return jdbcTemplate.queryForObject("SELECT * from ar_user WHERE user_id = ?", new Object[]{id}, (rs, rowNum) ->
                 Optional.of(new User(
                         rs.getLong("user_id"),
                         rs.getLong("acc_id"),
@@ -109,12 +111,13 @@ public class JdbcUserRepo implements UserDao {
 
     /**
      * Find specific User by Account id
+     *
      * @param id acc id of User to find
      * @return Optional User with this acc id
      */
     @Override
     public Optional<User> findByAccId(long id) {
-        return jdbcTemplate.queryForObject("SELECT * from ar_user WHERE acc_id = ?", new Object[]{id}, (rs, rowNum)->
+        return jdbcTemplate.queryForObject("SELECT * from ar_user WHERE acc_id = ?", new Object[]{id}, (rs, rowNum) ->
                 Optional.of(new User(
                         rs.getLong("user_id"),
                         rs.getLong("acc_id"),

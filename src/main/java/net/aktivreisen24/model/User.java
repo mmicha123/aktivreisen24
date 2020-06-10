@@ -32,13 +32,17 @@ public class User {
         this.lastName = lastName;
     }
 
-    public long getId(){
+    public long getId() {
         return id;
     }
 
-    public long getAccId() {return id_acc;};
+    public long getAccId() {
+        return id_acc;
+    }
 
-    public String getFirstName(){
+    ;
+
+    public String getFirstName() {
         return firstName;
     }
 
@@ -58,7 +62,9 @@ public class User {
         return phoneNumber;
     }
 
-    public void setId(long id) { this.id = id;}
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

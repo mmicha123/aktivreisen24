@@ -82,6 +82,7 @@ public class JdbcAccountRepo implements AccountDao {
 
     /**
      * Find specific Account by id
+     *
      * @param id id of Account to find
      * @return Optional Account with this param id
      */
