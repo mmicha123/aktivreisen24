@@ -3,9 +3,10 @@ package net.aktivreisen24.model;
 
 public class User {
 
-    private final long id;
+    private long id;
+    private final long id_acc;
     private String firstName;
-    private String surname;
+    private String lastName;
 
     private String address;
     private String country;
@@ -14,25 +15,35 @@ public class User {
 
     private PaymentInfo pi;
 
-    public User(long id, String firstName, String surname, String address, String country, int phoneNumber) {
+    public User(long id, long id_acc, String firstName, String lastName, String address, String country, int phoneNumber) {
         this.id = id;
+        this.id_acc = id_acc;
         this.firstName = firstName;
-        this.surname = surname;
+        this.lastName = lastName;
         this.address = address;
         this.country = country;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(long id, long id_acc, String firstName, String lastName) {
+        this.id = id;
+        this.id_acc = id_acc;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public long getId(){
         return id;
     }
 
+    public long getAccId() {return id_acc;};
+
     public String getFirstName(){
         return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getAddress() {
@@ -47,12 +58,14 @@ public class User {
         return phoneNumber;
     }
 
+    public void setId(long id) { this.id = id;}
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setAddress(String address) {
