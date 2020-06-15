@@ -1,5 +1,7 @@
 package net.aktivreisen24.model;
 
+import java.util.List;
+
 public class Vacation {
 
     private final long id;
@@ -11,6 +13,8 @@ public class Vacation {
     private float rating;
     private String generelInfo;
     private String description;
+
+    private List<Comment> comments;
 
     //availabilty und comments fehlt
 
@@ -24,8 +28,6 @@ public class Vacation {
         this.generelInfo = generelInfo;
         this.description = description;
     }
-
-
 
     public long getId() {return id;}
 
@@ -55,6 +57,10 @@ public class Vacation {
         return description;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
     public void setStreet(String street) {
         this.street = street;
     }
@@ -77,5 +83,9 @@ public class Vacation {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

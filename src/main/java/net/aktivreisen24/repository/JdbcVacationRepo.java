@@ -10,7 +10,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
-import java.sql.Types;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +39,9 @@ public class JdbcVacationRepo implements VacationDao {
     public long save(Vacation obj) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_vacation (owner_id, address, country, price, rating, generelinfo, description) VALUES (?, ?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_vacation " +
+                    "(owner_id, address, country, price, rating, generelinfo, description, comment_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
             obj.getProviderId();
             obj.getStreet();
             obj.getCountry();
@@ -48,6 +49,7 @@ public class JdbcVacationRepo implements VacationDao {
             obj.getRating();
             obj.getGenerelInfo();
             obj.getDescription();
+            getIdCommentSuper();
             return ps;
         }, keyHolder);
 
@@ -129,5 +131,16 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getString("generelinfo"),
                         rs.getString("description")
                 )));
+    }
+
+
+    private long getIdCommentSuper() {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_commentsupertable VALUES(DEFAULT)", new String[]{"id"});
+            return ps;
+        }, keyHolder);
+
+        return keyHolder.getKey().longValue();
     }
 }
