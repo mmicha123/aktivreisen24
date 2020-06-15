@@ -19,7 +19,6 @@ public interface VacationDao {
 
     Optional<Vacation> findByVacationId(long id);
 
-    Optional<Vacation> findByProviderId(long id);
 
 
 }

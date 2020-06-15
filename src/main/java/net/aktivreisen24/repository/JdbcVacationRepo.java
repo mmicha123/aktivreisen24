@@ -110,24 +110,15 @@ public class JdbcVacationRepo implements VacationDao {
                 ));
     }
 
+    /**
+     * Find specific Vacation by vacation id
+     *
+     * @param id vacation id of Vacation to find
+     * @return Optional Vacation with this vacation id
+     */
     @Override
     public Optional<Vacation> findByVacationId(long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM ar_vacation WHERE vacation_id = ?", new Object[]{id}, (rs, rowNum) ->
-                Optional.of(new Vacation(
-                        rs.getLong("vacation_id"),
-                        rs.getLong("owner_id"),
-                        rs.getString("address"),
-                        rs.getString("country"),
-                        rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("generelinfo"),
-                        rs.getString("description")
-                )));
-    }
-
-    @Override
-    public Optional<Vacation> findByProviderId(long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM ar_vacation WHERE owner_id = ?", new Object[]{id}, (rs, rowNum) ->
                 Optional.of(new Vacation(
                         rs.getLong("vacation_id"),
                         rs.getLong("owner_id"),
