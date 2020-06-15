@@ -3,23 +3,25 @@ package net.aktivreisen24.model;
 public class Activity {
 
     private final long id;
+    private final long provider_id;
     private String street;
-    private Short houseNumber;
-    private String location;
+    private String country;
 
+    private float price;
     private float rating;
-    private String generelInfo;
+    private String generalInfo;
     private String description;
 
     //availabilty und comments fehlt
 
-    public Activity(long id, String street, Short houseNumber, String location, float rating, String generelInfo, String description) {
+    public Activity(long id, long provider_id, String street, String country, float price, float rating, String generalInfo, String description) {
         this.id = id;
+        this.provider_id = provider_id;
         this.street = street;
-        this.houseNumber = houseNumber;
-        this.location = location;
+        this.country = country;
+        this.price = price;
         this.rating = rating;
-        this.generelInfo = generelInfo;
+        this.generalInfo = generalInfo;
         this.description = description;
     }
 
@@ -27,24 +29,28 @@ public class Activity {
         return id;
     }
 
+    public long getProvider_id() {
+        return provider_id;
+    }
+
     public String getStreet() {
         return street;
     }
 
-    public Short getHouseNumber() {
-        return houseNumber;
+    public String getCountry() {
+        return country;
     }
 
-    public String getLocation() {
-        return location;
+    public float getPrice() {
+        return price;
     }
 
     public float getRating() {
         return rating;
     }
 
-    public String getGenerelInfo() {
-        return generelInfo;
+    public String getGeneralInfo() {
+        return generalInfo;
     }
 
     public String getDescription() {
@@ -55,20 +61,20 @@ public class Activity {
         this.street = street;
     }
 
-    public void setHouseNumber(Short houseNumber) {
-        this.houseNumber = houseNumber;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public void setRating(float rating) {
         this.rating = rating;
     }
 
-    public void setGenerelInfo(String generelInfo) {
-        this.generelInfo = generelInfo;
+    public void setGeneralInfo(String generalInfo) {
+        this.generalInfo = generalInfo;
     }
 
     public void setDescription(String description) {
