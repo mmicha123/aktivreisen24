@@ -3,38 +3,44 @@ package net.aktivreisen24.model;
 public class Vacation {
 
     private final long id;
+    private final long provider_id;
     private String street;
-    private Short houseNumber;
-    private String location;
+    private String country;
 
+    private float price;
     private float rating;
     private String generelInfo;
     private String description;
 
     //availabilty und comments fehlt
 
-
-    public Vacation(long id, String street, Short houseNumber, String location, float rating, String generelInfo, String description) {
+    public Vacation(long id, long provider_id, String street, String country,float price, float rating, String generelInfo, String description) {
         this.id = id;
+        this.provider_id = provider_id;
         this.street = street;
-        this.houseNumber = houseNumber;
-        this.location = location;
+        this.country = country;
+        this.price = price;
         this.rating = rating;
         this.generelInfo = generelInfo;
         this.description = description;
     }
+
+
+
     public long getId() {return id;}
+
+    public long getProviderId() {return provider_id;}
 
     public String getStreet() {
         return street;
     }
 
-    public Short getHouseNumber() {
-        return houseNumber;
+    public String getCountry() {
+        return country;
     }
 
-    public String getLocation() {
-        return location;
+    public float getPrice() {
+        return price;
     }
 
     public float getRating() {
@@ -53,12 +59,12 @@ public class Vacation {
         this.street = street;
     }
 
-    public void setHouseNumber(Short houseNumber) {
-        this.houseNumber = houseNumber;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public void setRating(float rating) {
