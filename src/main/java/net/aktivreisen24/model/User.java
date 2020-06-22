@@ -15,7 +15,7 @@ public class User {
 
     private PaymentInfo pi;
 
-    public User(long id, long id_acc, String firstName, String lastName, String address, String country, int phoneNumber) {
+    public User(long id, long id_acc, String firstName, String lastName, String address, String country, int phoneNumber, PaymentInfo pi) {
         this.id = id;
         this.id_acc = id_acc;
         this.firstName = firstName;
@@ -23,6 +23,7 @@ public class User {
         this.address = address;
         this.country = country;
         this.phoneNumber = phoneNumber;
+        this.pi = pi;
     }
 
     public long getId() {
