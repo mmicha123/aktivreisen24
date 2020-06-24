@@ -2,8 +2,8 @@ package net.aktivreisen24.model;
 
 public class Provider {
 
-    private final long id;
-    private final long acc_id;
+    private long id;
+    private long acc_id;
     private String name;
     private float rating;
 
