@@ -25,6 +25,13 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public User(long id, long id_acc, String firstName, String lastName) {
+        this.id = id;
+        this.id_acc = id_acc;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public long getId() {
         return id;
     }
