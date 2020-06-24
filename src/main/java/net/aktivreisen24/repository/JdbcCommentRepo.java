@@ -18,13 +18,16 @@ public class JdbcCommentRepo implements CommentDao {
 
     @Override
     public int addCommentToVacationById(long id, Comment c) {
-
-        return 0;
+        return jdbcTemplate.update("INSERT INTO ar_comments (super_id, comment) SELECT comment_id, ? FROM ar_vacation WHERE vacation_id ?",
+                c.getComment(),
+                id);
     }
 
     @Override
     public int addCommentToActivityById(long id, Comment c) {
-        return 0;
+        return jdbcTemplate.update("INSERT INTO ar_comments (super_id, comment) SELECT comment_id, ? FROM ar_activity WHERE activity_id ?",
+                c.getComment(),
+                id);
     }
 
     @Override
