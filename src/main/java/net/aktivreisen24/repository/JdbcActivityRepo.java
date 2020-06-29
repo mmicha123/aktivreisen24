@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository("postGREActivity")
 public class JdbcActivityRepo implements ActivityDao {
 
     @Autowired

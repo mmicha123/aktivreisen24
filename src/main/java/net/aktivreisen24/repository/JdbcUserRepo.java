@@ -13,7 +13,7 @@ import java.sql.Types;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository("postGREUser")
 public class JdbcUserRepo implements UserDao {
 
     @Autowired

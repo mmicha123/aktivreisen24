@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository("postGREAccount")
 public class JdbcAccountRepo implements AccountDao {
 
     @Autowired
