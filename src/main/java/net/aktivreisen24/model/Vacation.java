@@ -21,7 +21,7 @@ public class Vacation {
 
     //availabilty und comments fehlt
 
-    public Vacation(long id, long provider_id, String street, String country, float price, float rating, String generelInfo, String description) {
+    public Vacation(long id, long provider_id, String street, String country, float price, float rating) {
         this.id = id;
         this.provider_id = provider_id;
         this.street = street;
