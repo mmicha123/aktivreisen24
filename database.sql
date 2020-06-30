@@ -3,8 +3,6 @@ DROP TABLE if EXISTS ar_role CASCADE;
 DROP TABLE if EXISTS ar_account_role CASCADE;
 DROP TABLE if EXISTS ar_account_data CASCADE;
 
-DROP TABLE if EXISTS ar_user CASCADE;
-DROP TABLE if EXISTS ar_provider CASCADE;
 
 DROP TABLE if EXISTS ar_activity CASCADE;
 DROP TABLE if EXISTS ar_vacation CASCADE;
@@ -14,14 +12,13 @@ DROP TABLE if EXISTS ar_picture CASCADE;
 DROP TABLE if EXISTS ar_comments CASCADE;
 DROP TABLE if EXISTS ar_commentsupertable CASCADE;
 
+
 CREATE TABLE ar_account
 (
     acc_id      Serial,
-    acc_data_id Integer,
     passhash    text,
     email       varchar(320),
-    PRIMARY KEY (acc_id),
-    foreign KEY (acc_data_id) references ar_account_data (acc_data_id)
+    PRIMARY KEY (acc_id)
 );
 
 CREATE TABLE ar_role
@@ -33,47 +30,24 @@ CREATE TABLE ar_role
 
 CREATE TABLE ar_account_role
 (
-    ar_id   Serial,
     acc_id  Integer not null,
     role_id Integer not null,
-    PRIMARY KEY (ar_id),
-    foreign KEY (acc_id) references ar_account (acc_id),
+    PRIMARY KEY (acc_id, role_id),
+    foreign KEY (acc_id) references ar_account (acc_id) ON DELETE CASCADE,
     foreign KEY (role_id) references ar_role (role_id)
 );
 
 CREATE TABLE ar_account_data
 (
     acc_data_id Serial,
+    acc_id      Integer not null,
     first_name  text not null,
     last_name   text not null,
     phone       Integer,
     address     text,
-    coutry      text,
-    PRIMARY KEY (acc_data_id)
-);
-
-
-CREATE TABLE ar_user
-(
-    user_id    Serial,
-    acc_id     Integer not null,
-    first_name text    not null,
-    last_name  text    not null,
-    phone      Integer,
-    address    text,
-    coutry     text,
-    PRIMARY KEY (user_id),
-    foreign KEY (acc_id) references ar_account (acc_id) on delete cascade
-);
-
-CREATE TABLE ar_provider
-(
-    provider_id Serial,
-    acc_id      Integer not null,
-    name        text    not null,
-    rating      real,
-    PRIMARY KEY (provider_id),
-    foreign KEY (acc_id) references ar_account (acc_id)
+    country     text,
+    PRIMARY KEY (acc_data_id),
+    FOREIGN KEY (acc_id) REFERENCES ar_account(acc_id) ON DELETE CASCADE
 );
 
 
@@ -105,7 +79,7 @@ CREATE TABLE ar_vacation
     best_season text,
     comment_id  Integer,
     PRIMARY KEY (vacation_id),
-    foreign KEY (owner_id) references ar_provider (provider_id),
+    foreign KEY (owner_id) references ar_account (acc_id),
     foreign KEY (comment_id) references ar_commentsupertable (id)
 );
 
@@ -117,12 +91,12 @@ CREATE TABLE ar_activity
     rating      real,
     description text,
     category    text,
-    needEquip   text,
+    need_equip   text,
     amt_people  Integer check (amt_people > 0),
     picture_id  Integer,
     comment_id  Integer,
     PRIMARY KEY (activity_id),
-    foreign KEY (owner_id) references ar_provider (provider_id),
+    foreign KEY (owner_id) references ar_account (acc_id),
     foreign KEY (comment_id) references ar_commentsupertable (id)
 );
 
@@ -154,4 +128,37 @@ VALUES ('User');
 insert into ar_role(role_name)
 VALUES ('Provider');
 
+INSERT INTO ar_account(passhash, email) VALUES('mememadsdaffs', 'memem@meme.de');
+INSERT INTO ar_account(passhash, email) VALUES('testdadssafads', 'memem@1meme.de');
 
+INSERT INTO ar_account_role (acc_id, role_id) VALUES (1, (SELECT role_id FROM ar_role WHERE role_name = 'Admin'));
+INSERT INTO ar_account_role (acc_id, role_id) VALUES (2, (SELECT role_id FROM ar_role WHERE role_name = 'Provider'));
+
+SELECT ar_account.acc_id, passhash, email, role_name FROM ar_account
+    JOIN ar_account_role aar on ar_account.acc_id = aar.acc_id
+    JOIN ar_role ar on aar.role_id = ar.role_id WHERE ar_account.acc_id = 2;
+
+SELECT ar_account.acc_id, passhash, email, role_name FROM ar_account
+    JOIN ar_account_role aar on ar_account.acc_id = aar.acc_id
+    JOIN ar_role ar on aar.role_id = ar.role_id WHERE ar_account.passhash = 'testdadssafads' and ar_account.email = 'memem@1mem.de';
+
+
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'adsadsad', 1337, 'afgswqd', 'meme', 3.50, 2.5, 'summer');
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'rwsfdf', 124, 'afgswqd', 'meme', 5.50, 5.0, 'summer');
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'hgkgj', 4363, 'afgswqd', 'meme', 8.50, 1.3, 'summer');
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'rzt', 658542, 'afgswqd', 'meme', 1.50, 4.14, 'summer');
+
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'memeasdadsada', 'test', 'ski', 4);
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'asfaas', 'test', 'ski', 4);
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'memeaszt54dadsada', 'test', 'ski', 4);
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'dskakdasksaksaksda', 'test', 'ski', 4);
+
+
+INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (1, 1);
+INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (1, 2);
+INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (1, 4);
+
+INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (2, 2);
+INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (2, 3);
+
+SELECT * FROM ar_activity INNER JOIN ar_av_compatibility aac on ar_activity.activity_id = aac.activity_id WHERE aac.vacation_id = 1;
