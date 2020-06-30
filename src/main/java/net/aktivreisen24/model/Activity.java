@@ -8,25 +8,39 @@ public class Activity {
     private float price;
     private float rating;
     private String description;
+    private String category;
     private String neededEquip;
     private int amtPeople;
 
     private long pictureId;
     private long commentId;
 
-    public Activity(long provider_id, float price, float rating, String description, String neededEquip, int amtPeople) {
+    public Activity(long id, long provider_id, float price, float rating, String description, String category, String neededEquip, int amtPeople) {
+        this.id = id;
         this.provider_id = provider_id;
         this.price = price;
         this.rating = rating;
         this.description = description;
+        this.category = category;
         this.neededEquip = neededEquip;
         this.amtPeople = amtPeople;
     }
 
-    public Activity(long provider_id, float price, String description, String neededEquip, int amtPeople) {
+    public Activity(long provider_id, float price, float rating, String description, String category, String neededEquip, int amtPeople) {
+        this.provider_id = provider_id;
+        this.price = price;
+        this.rating = rating;
+        this.description = description;
+        this.category = category;
+        this.neededEquip = neededEquip;
+        this.amtPeople = amtPeople;
+    }
+
+    public Activity(long provider_id, float price, String description, String category, String neededEquip, int amtPeople) {
         this.provider_id = provider_id;
         this.price = price;
         this.description = description;
+        this.category = category;
         this.neededEquip = neededEquip;
         this.amtPeople = amtPeople;
     }
@@ -65,6 +79,14 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getNeededEquip() {
