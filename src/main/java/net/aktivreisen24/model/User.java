@@ -14,7 +14,6 @@ public class User {
 
 	private int phoneNumber;
 
-	private PaymentInfo pi;
 
 	public User(long id, long id_acc, String firstName, String lastName, String address, String country, int phoneNumber) {
 		this.id = id;
@@ -88,7 +87,4 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setPi(PaymentInfo pi) {
-        this.pi = pi;
-    }
 }
