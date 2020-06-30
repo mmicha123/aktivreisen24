@@ -13,7 +13,6 @@ public class Account {
 	private final String passhash;
 	private String email;
 
-	private long acc_data_id;
 	private final Role role;
 
 	public Account(@JsonProperty("acc_id") long acc_id,
@@ -39,14 +38,6 @@ public class Account {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public void setAcc_data_id(long acc_data_id) {
-		this.acc_data_id = acc_data_id;
-	}
-
-	public long getAcc_data_id() {
-		return acc_data_id;
 	}
 
 	public Role getRole() {
