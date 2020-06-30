@@ -14,7 +14,6 @@ public interface AccountDao {
 
     int deleteById(long id);
 
-    List<Account> findAll();
 
     Optional<Account> findById(long id);
 
