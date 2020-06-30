@@ -9,24 +9,25 @@ public class Vacation {
     private String street;
     private String country;
 
+    private int zipCode;
+    private String city;
+
     private float price;
     private float rating;
-    private String generelInfo;
-    private String description;
+
+    private float bestSeason;
 
     private List<Comment> comments;
 
     //availabilty und comments fehlt
 
-    public Vacation(long id, long provider_id, String street, String country,float price, float rating, String generelInfo, String description) {
+    public Vacation(long id, long provider_id, String street, String country, float price, float rating, String generelInfo, String description) {
         this.id = id;
         this.provider_id = provider_id;
         this.street = street;
         this.country = country;
         this.price = price;
         this.rating = rating;
-        this.generelInfo = generelInfo;
-        this.description = description;
     }
 
     public long getId() {return id;}
@@ -49,14 +50,6 @@ public class Vacation {
         return rating;
     }
 
-    public String getGenerelInfo() {
-        return generelInfo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public List<Comment> getComments() {
         return comments;
     }
@@ -77,15 +70,35 @@ public class Vacation {
         this.rating = rating;
     }
 
-    public void setGenerelInfo(String generelInfo) {
-        this.generelInfo = generelInfo;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public long getProvider_id() {
+        return provider_id;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public float getBestSeason() {
+        return bestSeason;
+    }
+
+    public void setBestSeason(float bestSeason) {
+        this.bestSeason = bestSeason;
     }
 }

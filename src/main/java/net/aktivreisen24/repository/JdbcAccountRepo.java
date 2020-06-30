@@ -62,15 +62,30 @@ public class JdbcAccountRepo implements AccountDao {
      */
     @Override
     public int deleteById(long id) {
-        if(id <= 0) return -1;
+        if (id <= 0) return -1;
         return jdbcTemplate.update("DELETE FROM ar_account WHERE acc_id = ?", id);
     }
 
-    //maybe not in use so delete!!!
-    /**
+    @Override
+    public List<Account> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Account> findById(long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Account> findByLogin(String pw, String mail) {
+        return Optional.empty();
+    }
+
+    /*//maybe not in use so delete!!!
+     *//**
      * get all Accounts but not the passhash.
      * @return all Accounts (but not passhash)
-     */
+     *//*
     @Override
     public List<Account> findAll() {
         return jdbcTemplate.query("SELECT acc_id, email FROM ar_account", (rs, rowNum) ->
@@ -80,12 +95,12 @@ public class JdbcAccountRepo implements AccountDao {
                         rs.getString("email")));
     }
 
-    /**
+    *//**
      * Find specific Account by id
      *
      * @param id id of Account to find
      * @return Optional Account with this param id
-     */
+     *//*
     @Override
     public Optional<Account> findById(long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM ar_account WHERE acc_id = ?", new Object[]{id}, (rs, rowNum) ->
@@ -95,12 +110,12 @@ public class JdbcAccountRepo implements AccountDao {
                         rs.getString("email"))));
     }
 
-    /**
+    *//**
      * Is used to find Account at login
      * @param pw passhash from login
      * @param mail mail from login
      * @return Optional Account check if found!
-     */
+     *//*
     @Override
     public Optional<Account> findByLogin(String pw, String mail) {
         return jdbcTemplate.queryForObject("SELECT * FROM ar_account WHERE passhash = ? AND email = ?", new Object[]{pw, mail}, (rs, rowNum) ->
@@ -108,5 +123,5 @@ public class JdbcAccountRepo implements AccountDao {
                         rs.getLong("acc_id"),
                         rs.getString("passhash"),
                         rs.getString("email"))));
-    }
+    }*/
 }
