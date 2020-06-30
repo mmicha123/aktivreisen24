@@ -82,9 +82,7 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getString("address"),
                         rs.getString("country"),
                         rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("generelinfo"),
-                        rs.getString("description")
+                        rs.getFloat("rating")
                 ));
     }
 
@@ -102,9 +100,7 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getString("address"),
                         rs.getString("country"),
                         rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("generelinfo"),
-                        rs.getString("description")
+                        rs.getFloat("rating")
                 ));
     }
 
@@ -123,9 +119,7 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getString("address"),
                         rs.getString("country"),
                         rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("generelinfo"),
-                        rs.getString("description")
+                        rs.getFloat("rating")
                 )));
     }
 
