@@ -2,83 +2,85 @@ package net.aktivreisen24.model;
 
 public class Activity {
 
-    private final long id;
+    private long id;
     private final long provider_id;
-    private String street;
-    private String country;
 
     private float price;
     private float rating;
-    private String generalInfo;
     private String description;
+    private String neededEquip;
+    private int amtPeople;
 
-    //availabilty und comments fehlt
+    private long pictureId;
+    private long commentId;
 
-    public Activity(long id, long provider_id, String street, String country, float price, float rating, String generalInfo, String description) {
-        this.id = id;
+    public Activity(long provider_id, float price, float rating, String description, String neededEquip, int amtPeople) {
         this.provider_id = provider_id;
-        this.street = street;
-        this.country = country;
         this.price = price;
         this.rating = rating;
-        this.generalInfo = generalInfo;
         this.description = description;
+        this.neededEquip = neededEquip;
+        this.amtPeople = amtPeople;
+    }
+
+    public Activity(long provider_id, float price, String description, String neededEquip, int amtPeople) {
+        this.provider_id = provider_id;
+        this.price = price;
+        this.description = description;
+        this.neededEquip = neededEquip;
+        this.amtPeople = amtPeople;
     }
 
     public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getProvider_id() {
         return provider_id;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public float getPrice() {
         return price;
     }
 
-    public float getRating() {
-        return rating;
-    }
-
-    public String getGeneralInfo() {
-        return generalInfo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public float getRating() {
+        return rating;
     }
 
     public void setRating(float rating) {
         this.rating = rating;
     }
 
-    public void setGeneralInfo(String generalInfo) {
-        this.generalInfo = generalInfo;
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNeededEquip() {
+        return neededEquip;
+    }
+
+    public void setNeededEquip(String neededEquip) {
+        this.neededEquip = neededEquip;
+    }
+
+    public int getAmtPeople() {
+        return amtPeople;
+    }
+
+    public void setAmtPeople(int amtPeople) {
+        this.amtPeople = amtPeople;
     }
 }
 
