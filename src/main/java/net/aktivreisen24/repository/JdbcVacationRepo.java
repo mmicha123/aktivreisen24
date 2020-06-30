@@ -41,7 +41,7 @@ public class JdbcVacationRepo implements VacationDao {
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_vacation " +
                     "(owner_id, address, zip, country, price, best_season) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
+                    "VALUES (?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
             obj.getProviderId();
             obj.getStreet();
             obj.getZipCode();
@@ -88,7 +88,7 @@ public class JdbcVacationRepo implements VacationDao {
 
     /**
      * list of all Vacations from one provider in database
-     * @param id id off the provider
+     * @param id id off the provider aka the account id
      * @return list of Vacations by provider
      */
     @Override
