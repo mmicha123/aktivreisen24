@@ -14,7 +14,5 @@ public interface AccountDataDao {
 
     int update(AccountData obj);
 
-    List<AccountData> findAll();
-
     Optional<AccountData> findByAccId(long id);
 }
