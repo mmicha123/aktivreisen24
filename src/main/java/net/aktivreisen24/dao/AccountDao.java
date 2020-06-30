@@ -14,7 +14,6 @@ public interface AccountDao {
 
     int deleteById(long id);
 
-
     Optional<Account> findById(long id);
 
     Optional<Account> findByLogin(String pw, String mail);
