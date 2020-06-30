@@ -75,21 +75,6 @@ public class JdbcAccountRepo implements AccountDao {
         return jdbcTemplate.update("DELETE FROM ar_account WHERE acc_id = ?", id);
     }
 
-    //maybe not in use so delete!!!
-
-    /**
-     * get all Accounts but not the passhash.
-     *
-     * @return all Accounts (but not passhash)
-     */
-    @Override
-    public List<Account> findAll() {
-        return jdbcTemplate.query("SELECT acc_id, email FROM ar_account", (rs, rowNum) ->
-                new Account(
-                        rs.getLong("acc_id"),
-                        null,
-                        rs.getString("email")));
-    }
 
     /**
      * Find specific Account by id
