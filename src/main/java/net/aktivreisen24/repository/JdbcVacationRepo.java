@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository("postGREVacation")
 public class JdbcVacationRepo implements VacationDao {
 
     @Autowired
@@ -40,16 +40,14 @@ public class JdbcVacationRepo implements VacationDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_vacation " +
-                    "(owner_id, address, country, price, rating, generelinfo, description, comment_id) " +
+                    "(owner_id, address, zip, country, price, best_season) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
             obj.getProviderId();
             obj.getStreet();
+            obj.getZipCode();
             obj.getCountry();
             obj.getPrice();
-            obj.getRating();
-            obj.getGenerelInfo();
-            obj.getDescription();
-            getIdCommentSuper();
+            obj.getBestSeason();
             return ps;
         }, keyHolder);
 
@@ -64,11 +62,9 @@ public class JdbcVacationRepo implements VacationDao {
      */
     @Override
     public int update(Vacation obj) {
-        return jdbcTemplate.update("UPDATE ar_vacation SET price = ?, rating = ?, generelinfo = ?, description = ? WHERE vacation_id = ?",
+        return jdbcTemplate.update("UPDATE ar_vacation SET price = ?, rating = ? WHERE vacation_id = ?",
                 obj.getPrice(),
                 obj.getRating(),
-                obj.getGenerelInfo(),
-                obj.getDescription(),
                 obj.getId());
     }
 
