@@ -1,5 +1,7 @@
 package net.aktivreisen24.model;
 
+import java.util.List;
+
 public class Activity {
 
     private long id;
@@ -12,7 +14,7 @@ public class Activity {
     private String neededEquip;
     private int amtPeople;
 
-    private long pictureId;
+    private List<String> picturesURL;
     private long commentId;
 
     public Activity(long id, long provider_id, float price, float rating, String description, String category, String neededEquip, int amtPeople) {
@@ -103,6 +105,14 @@ public class Activity {
 
     public void setAmtPeople(int amtPeople) {
         this.amtPeople = amtPeople;
+    }
+
+    public List<String> getPicturesURL() {
+        return picturesURL;
+    }
+
+    public void setPicturesURL(List<String> picturesURL) {
+        this.picturesURL = picturesURL;
     }
 }
 

@@ -8,7 +8,7 @@ DROP TABLE if EXISTS ar_activity CASCADE;
 DROP TABLE if EXISTS ar_vacation CASCADE;
 DROP TABLE if EXISTS ar_av_compatibility CASCADE;
 
-DROP TABLE if EXISTS ar_picture CASCADE;
+DROP TABLE if EXISTS ar_pictures CASCADE;
 DROP TABLE if EXISTS ar_comments CASCADE;
 DROP TABLE if EXISTS ar_commentsupertable CASCADE;
 
@@ -93,7 +93,6 @@ CREATE TABLE ar_activity
     category    text,
     need_equip   text,
     amt_people  Integer check (amt_people > 0),
-    picture_id  Integer,
     comment_id  Integer,
     PRIMARY KEY (activity_id),
     foreign KEY (owner_id) references ar_account (acc_id),
@@ -111,11 +110,12 @@ CREATE TABLE ar_av_compatibility
 
 
 
-CREATE TABLE ar_picture
+CREATE TABLE ar_pictures
 (
-    picture_id Serial,
-    url        text not null UNIQUE,
-    PRIMARY KEY (picture_id)
+    activity_id Integer not null,
+    url         text not null UNIQUE,
+    PRIMARY KEY (activity_id, url),
+    FOREIGN KEY (activity_id) REFERENCES ar_activity(activity_id) on delete cascade
 );
 
 

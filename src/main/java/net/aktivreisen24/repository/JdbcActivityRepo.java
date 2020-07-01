@@ -75,6 +75,42 @@ public class JdbcActivityRepo implements ActivityDao {
     }
 
     /**
+     * adds a picture url to a activity
+     *
+     * @param obj activity to add the picture
+     * @param url picture url
+     * @return number of effected rows
+     */
+    @Override
+    public int addPicture(Activity obj, String url) {
+        return addPicture(obj.getId(), url);
+    }
+
+    /**
+     * adds a picture url to a activity
+     *
+     * @param objId activity id to add the picture
+     * @param url   picture url
+     * @return number of effected rows
+     */
+    @Override
+    public int addPicture(long objId, String url) {
+        return jdbcTemplate.update("INSERT INTO ar_pictures(activity_id, url) VALUES (?,?)", objId, url);
+    }
+
+    /**
+     * gets a list of uls of pictures to a specific activity
+     *
+     * @param id activity id
+     * @return List of urls of pictures
+     */
+    private List<String> findAllPictures(long id) {
+        return jdbcTemplate.query("SELECT url FROM ar_pictures WHERE activity_id = ?",
+                new Object[]{id}, (rs, rowNum) ->
+                        new String(rs.getString("url")));
+    }
+
+    /**
      * adds an Activity to a Vacation but n to m
      *
      * @param act Activity
@@ -106,17 +142,20 @@ public class JdbcActivityRepo implements ActivityDao {
      */
     @Override
     public List<Activity> findAll() {
-        return jdbcTemplate.query("SELECT * FROM ar_activity", (rs, rowNum) ->
-                new Activity(
-                        rs.getLong("activity_id"),
-                        rs.getLong("owner_id"),
-                        rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("description"),
-                        rs.getString("category"),
-                        rs.getString("needEquip"),
-                        rs.getInt("amt_people")
-                ));
+        return jdbcTemplate.query("SELECT * FROM ar_activity", (rs, rowNum) -> {
+            Activity tmp = new Activity(
+                    rs.getLong("activity_id"),
+                    rs.getLong("owner_id"),
+                    rs.getFloat("price"),
+                    rs.getFloat("rating"),
+                    rs.getString("description"),
+                    rs.getString("category"),
+                    rs.getString("needEquip"),
+                    rs.getInt("amt_people")
+            );
+            tmp.setPicturesURL(findAllPictures(rs.getLong("activity_id")));
+            return tmp;
+        });
     }
 
     /**
@@ -140,16 +179,21 @@ public class JdbcActivityRepo implements ActivityDao {
     public List<Activity> findAllInVacationRange(long id) {
         return jdbcTemplate.query("SELECT * FROM ar_activity INNER JOIN ar_av_compatibility aac on " +
                         "ar_activity.activity_id = aac.activity_id WHERE aac.vacation_id = ?",
-                new Object[]{id}, (rs, rowNum) -> new Activity(
-                        rs.getLong("activity_id"),
-                        rs.getLong("owner_id"),
-                        rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("description"),
-                        rs.getString("category"),
-                        rs.getString("need_equip"),
-                        rs.getInt("amt_people")
-                ));
+                new Object[]{id}, (rs, rowNum) -> {
+                    Activity tmp = new Activity(
+                            rs.getLong("activity_id"),
+                            rs.getLong("owner_id"),
+                            rs.getFloat("price"),
+                            rs.getFloat("rating"),
+                            rs.getString("description"),
+                            rs.getString("category"),
+                            rs.getString("need_equip"),
+                            rs.getInt("amt_people")
+                    );
+                    tmp.setPicturesURL(findAllPictures(rs.getLong("activity_id")));
+                    return tmp;
+                }
+        );
     }
 
     /**
@@ -160,19 +204,24 @@ public class JdbcActivityRepo implements ActivityDao {
      */
     @Override
     public List<Activity> findAllByProviderId(long id) {
-        return jdbcTemplate.query("SELECT * FROM ar_activity WHERE owner_id = ?", new Object[]{id}, (rs, rowNum) ->
-                new Activity(
-                        rs.getLong("activity_id"),
-                        rs.getLong("owner_id"),
-                        rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("description"),
-                        rs.getString("category"),
-                        rs.getString("need_equip"),
-                        rs.getInt("amt_people")
-                ));
+        return jdbcTemplate.query("SELECT * FROM ar_activity WHERE owner_id = ?", new Object[]{id}, (rs, rowNum) -> {
+                    Activity tmp = new Activity(
+                            rs.getLong("activity_id"),
+                            rs.getLong("owner_id"),
+                            rs.getFloat("price"),
+                            rs.getFloat("rating"),
+                            rs.getString("description"),
+                            rs.getString("category"),
+                            rs.getString("need_equip"),
+                            rs.getInt("amt_people")
+                    );
+                    tmp.setPicturesURL(findAllPictures(rs.getLong("activity_id")));
+                    return tmp;
+                }
+        );
     }
 
+    //TODO add picture and handel optional
     /**
      * Find specific Activity by activity id
      *

@@ -13,6 +13,10 @@ public interface ActivityDao {
 
     int update(Activity obj);
 
+    int addPicture(Activity obj, String url);
+
+    int addPicture(long objId, String url);
+
     int addActivityToVacation(Activity act, Vacation vac);
 
     int addActivityToVacation(long actId, long vacId);
