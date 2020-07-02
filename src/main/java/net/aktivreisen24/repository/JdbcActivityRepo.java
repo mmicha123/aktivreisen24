@@ -221,7 +221,6 @@ public class JdbcActivityRepo implements ActivityDao {
         );
     }
 
-    //TODO add picture and handel optional
     /**
      * Find specific Activity by activity id
      *
@@ -230,8 +229,10 @@ public class JdbcActivityRepo implements ActivityDao {
      */
     @Override
     public Optional<Activity> findByActivityId(long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM ar_activity WHERE activity_id = ?", new Object[]{id}, (rs, rowNum) ->
-                Optional.of(new Activity(
+        return jdbcTemplate.queryForObject("SELECT * FROM ar_activity WHERE activity_id = ?", new Object[]{id}, (rs, rowNum) -> {
+            if(rowNum == 0)
+                return Optional.empty();
+            Activity tmp = new Activity(
                         rs.getLong("activity_id"),
                         rs.getLong("owner_id"),
                         rs.getFloat("price"),
@@ -240,6 +241,9 @@ public class JdbcActivityRepo implements ActivityDao {
                         rs.getString("category"),
                         rs.getString("need_equip"),
                         rs.getInt("amt_people")
-                )));
+                );
+                tmp.setPicturesURL(findAllPictures(rs.getLong("activity_id")));
+                return Optional.of(tmp);
+        });
     }
 }
