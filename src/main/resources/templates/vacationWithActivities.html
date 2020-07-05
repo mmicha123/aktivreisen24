@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de" xmlns:th="http://thymeleaf.org">
 <head>
     <title>Bright Hotel - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
@@ -31,12 +31,12 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="vacations.html" class="nav-link">Rooms</a></li>
-                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item active"><a href="about.html" class="nav-link">About Us</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="index" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="vacations" class="nav-link">Urlaube</a></li>
+                <li class="nav-item"><a href="services" class="nav-link">Profil</a></li>
+                <li class="nav-item"><a href="about" class="nav-link">Über Uns</a></li>
+                <li class="nav-item"><a href="contact" class="nav-link">Kontakt</a></li>
+                <li class="nav-item"><a href="blog" class="nav-link">Blog?</a></li>
             </ul>
         </div>
     </div>
@@ -49,8 +49,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
-                <span class="subheading-sm">About</span>
-                <h2 class="heading">The Hotel</h2>
+                <span class="subheading-sm">Wähle deine Aktivitäten</span>
+                <h2 class="heading">Das Hotel</h2>
             </div>
         </div>
     </div>
@@ -65,27 +65,26 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 mb-3">
-                <h2>Enjoy a Luxury Experience</h2>
-            </div>
-            <div class="col-md-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, necessitatibus officiis facere nisi
-                    et, ut adipisci a quis quisquam vitae doloremque tempora repellat quae accusantium atque eum
-                    voluptatibus aperiam cumque.</p>
-                <p>Quia ratione, eum harum ab similique mollitia, nisi itaque vel voluptas ipsam dolore perferendis.
-                    Deleniti voluptatum error possimus ipsum, sed, obcaecati. Sit unde quia eum repudiandae molestiae
-                    reprehenderit harum nesciunt.</p>
-                <p>Pariatur non consectetur libero, veniam inventore officia neque ipsum vel vitae repudiandae doloribus
-                    odit nihil dicta sit, magnam eos, in asperiores consequuntur eaque atque nam error. Dignissimos
-                    porro veniam voluptate.</p>
-            </div>
-            <div class="col-md-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, necessitatibus officiis facere nisi
-                    et, ut adipisci a quis quisquam vitae doloremque tempora repellat quae accusantium atque eum
-                    voluptatibus aperiam cumque.</p>
-                <p>Quia ratione, eum harum ab similique mollitia, nisi itaque vel voluptas ipsam dolore perferendis.
-                    Deleniti voluptatum error possimus ipsum, sed, obcaecati. Sit unde quia eum repudiandae molestiae
-                    reprehenderit harum nesciunt.</p>
+
+            <div class="text">
+                <h2 class="heading">Bachelor Room</h2>
+
+
+                <ul class="specs">
+                    <li>
+                        <div class="price"><strong>Preis: </strong><sup>$</sup><span class="number"
+                                                                                     th:inline="text">[[${vacation.price}]]</span><sub>/pro
+                            Nacht</sub></div>
+                    </li>
+                    <li th:inline="text"><strong>Land:</strong> [[${vacation.country}]]</li>
+                    <li th:inline="text"><strong>Postleitahl:</strong> [[${vacation.zipCode}]]</li>
+                    <li th:inline="text"><strong>Stadt:</strong> [[${vacation.city}]]</li>
+                    <li th:inline="text"><strong>Adresse:</strong> [[${vacation.street}]]</li>
+                    <li th:inline="text"><strong>Beste Saison:</strong> [[${vacation.bestSeason}]]</li>
+                    <li th:inline="text"><strong>Bewertung:</strong> [[${vacation.rating}]]</li>
+
+
+                </ul>
             </div>
 
         </div>

@@ -1,17 +1,12 @@
 package net.aktivreisen24.api;
 
-import net.aktivreisen24.model.User;
+import net.aktivreisen24.exceptions.VacationNotFoundException;
 import net.aktivreisen24.model.Vacation;
-import net.aktivreisen24.service.UserService;
 import net.aktivreisen24.service.VacationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Controller
 public class VacationController {
@@ -34,6 +29,26 @@ public class VacationController {
 		System.out.println(model);
 		return "redirect:/addVacation";
 	}
+
+	@GetMapping("/vacation{id}")
+	public String showSpecificVacation(@PathVariable("id") long id, Model model) {
+		Vacation vacation = vacationService.findVacationByID(id)
+				.orElseThrow(() -> new VacationNotFoundException("Invalid journey Id:" + id));
+
+		model.addAttribute("vacation", vacation);
+
+		System.out.println(vacation.getPrice());
+		System.out.println(vacation.getBestSeason());
+		System.out.println(vacation.getCountry());
+		System.out.println(vacation.getZipCode());
+		System.out.println(vacation.getCity());
+		System.out.println(vacation.getId());
+		System.out.println(vacation.getOwner_id());
+		System.out.println(vacation.getRating());
+
+		return "vacationWithActivities";
+	}
+
 
 
 	/*@PostMapping("/api/addVacation/add")
