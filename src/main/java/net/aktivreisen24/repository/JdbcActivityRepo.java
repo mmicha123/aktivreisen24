@@ -111,7 +111,8 @@ public class JdbcActivityRepo implements ActivityDao {
 
     /**
      * adds a comment to an activity
-     * @param obj activity to add comment
+     *
+     * @param obj     activity to add comment
      * @param comment comment
      * @return number of effected rows
      */
@@ -122,7 +123,8 @@ public class JdbcActivityRepo implements ActivityDao {
 
     /**
      * adds a comment to an activity id
-     * @param objId activity id to add comment
+     *
+     * @param objId   activity id to add comment
      * @param comment comment
      * @return number of effected rows
      */
@@ -134,13 +136,16 @@ public class JdbcActivityRepo implements ActivityDao {
 
     /**
      * gets all comments and adds to the activity
+     *
      * @param obj the activity
      * @return how many comments where added
      */
     @Override
     public int getAddComments(Activity obj) {
-        obj.setComments(jdbcTemplate.query("SELECT comment FROM ar_comments WHERE super_id = (SELECT comment_id FROM ar_activity WHERE activity_id = ?)", new Object[]{obj.getId()}, (rs, rowNum) ->
-                new String(rs.getString("comment"))));
+        obj.setComments(jdbcTemplate.query("SELECT comment FROM ar_comments " +
+                        "WHERE super_id = (SELECT comment_id FROM ar_activity WHERE activity_id = ?)",
+                new Object[]{obj.getId()}, (rs, rowNum) ->
+                        new String(rs.getString("comment"))));
         return obj.getComments().size();
     }
 
