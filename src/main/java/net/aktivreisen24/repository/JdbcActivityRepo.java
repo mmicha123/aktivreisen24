@@ -19,6 +19,7 @@ public class JdbcActivityRepo implements ActivityDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
     /**
      * For Debug purpose gets the number of Activity in database.
      *
@@ -39,6 +40,12 @@ public class JdbcActivityRepo implements ActivityDao {
     public long save(Activity obj) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
+            return connection.prepareStatement("INSERT INTO ar_commentsupertable VALUES (DEFAULT)", new String[]{"id"});
+        }, keyHolder);
+
+        long commentId = keyHolder.getKey().longValue();
+
+        jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_activity " +
                     "(owner_id, price, rating, description, category, need_equip, amt_people) " +
                     "VALUES(?, ?, ?, ?, ?, ?, ?)", new String[]{"activity_id"});
@@ -52,7 +59,11 @@ public class JdbcActivityRepo implements ActivityDao {
             return ps;
         }, keyHolder);
 
-        return keyHolder.getKey().longValue();
+        long activityId = keyHolder.getKey().longValue();
+
+        jdbcTemplate.update("UPDATE ar_activity SET comment_id = ? WHERE activity_id = ?", commentId, activityId);
+
+        return activityId;
     }
 
     /**
@@ -96,6 +107,41 @@ public class JdbcActivityRepo implements ActivityDao {
     @Override
     public int addPicture(long objId, String url) {
         return jdbcTemplate.update("INSERT INTO ar_pictures(activity_id, url) VALUES (?,?)", objId, url);
+    }
+
+    /**
+     * adds a comment to an activity
+     * @param obj activity to add comment
+     * @param comment comment
+     * @return number of effected rows
+     */
+    @Override
+    public int addComment(Activity obj, String comment) {
+        return addComment(obj.getId(), comment);
+    }
+
+    /**
+     * adds a comment to an activity id
+     * @param objId activity id to add comment
+     * @param comment comment
+     * @return number of effected rows
+     */
+    @Override
+    public int addComment(long objId, String comment) {
+        return jdbcTemplate.update("INSERT INTO ar_comments(super_id, comment) " +
+                "VALUES ((SELECT comment_id FROM ar_activity WHERE activity_id = ?), ?)", objId, comment);
+    }
+
+    /**
+     * gets all comments and adds to the activity
+     * @param obj the activity
+     * @return how many comments where added
+     */
+    @Override
+    public int getAddComments(Activity obj) {
+        obj.setComments(jdbcTemplate.query("SELECT comment FROM ar_comments WHERE super_id = (SELECT comment_id FROM ar_activity WHERE activity_id = ?)", new Object[]{obj.getId()}, (rs, rowNum) ->
+                new String(rs.getString("comment"))));
+        return obj.getComments().size();
     }
 
     /**
@@ -230,20 +276,20 @@ public class JdbcActivityRepo implements ActivityDao {
     @Override
     public Optional<Activity> findByActivityId(long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM ar_activity WHERE activity_id = ?", new Object[]{id}, (rs, rowNum) -> {
-            if(rowNum == 0)
+            if (rowNum == 0)
                 return Optional.empty();
             Activity tmp = new Activity(
-                        rs.getLong("activity_id"),
-                        rs.getLong("owner_id"),
-                        rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("description"),
-                        rs.getString("category"),
-                        rs.getString("need_equip"),
-                        rs.getInt("amt_people")
-                );
-                tmp.setPicturesURL(findAllPictures(rs.getLong("activity_id")));
-                return Optional.of(tmp);
+                    rs.getLong("activity_id"),
+                    rs.getLong("owner_id"),
+                    rs.getFloat("price"),
+                    rs.getFloat("rating"),
+                    rs.getString("description"),
+                    rs.getString("category"),
+                    rs.getString("need_equip"),
+                    rs.getInt("amt_people")
+            );
+            tmp.setPicturesURL(findAllPictures(rs.getLong("activity_id")));
+            return Optional.of(tmp);
         });
     }
 }

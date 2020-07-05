@@ -223,3 +223,5 @@ SELECT *
 FROM ar_activity
          INNER JOIN ar_av_compatibility aac on ar_activity.activity_id = aac.activity_id
 WHERE aac.vacation_id = 1;
+
+SELECT comment FROM ar_comments WHERE super_id = (SELECT comment_id FROM ar_activity WHERE activity_id = 1);

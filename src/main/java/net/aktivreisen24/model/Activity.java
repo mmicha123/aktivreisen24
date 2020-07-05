@@ -15,7 +15,7 @@ public class Activity {
     private int amtPeople;
 
     private List<String> picturesURL;
-    private long commentId;
+    private List<String> comments;
 
     public Activity(long id, long provider_id, float price, float rating, String description, String category, String neededEquip, int amtPeople) {
         this.id = id;
@@ -113,6 +113,14 @@ public class Activity {
 
     public void setPicturesURL(List<String> picturesURL) {
         this.picturesURL = picturesURL;
+    }
+
+    public List<String> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<String> comments) {
+        this.comments = comments;
     }
 }
 

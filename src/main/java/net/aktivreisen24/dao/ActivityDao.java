@@ -17,6 +17,12 @@ public interface ActivityDao {
 
     int addPicture(long objId, String url);
 
+    int addComment(Activity obj, String comment);
+
+    int addComment(long objId, String comment);
+
+    int getAddComments(Activity obj);
+
     int addActivityToVacation(Activity act, Vacation vac);
 
     int addActivityToVacation(long actId, long vacId);
