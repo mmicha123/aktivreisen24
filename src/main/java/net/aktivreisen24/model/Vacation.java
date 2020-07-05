@@ -8,6 +8,7 @@ public class Vacation {
 
     private long id;
     private long owner_id;
+    private String title;
     private String street;
     private String country;
 
@@ -18,6 +19,7 @@ public class Vacation {
     private float rating;
 
     private String bestSeason;
+    private String pictureUrl;
 
     private List<Comment> comments;
 
@@ -44,19 +46,19 @@ public class Vacation {
         this.bestSeason = bestSeason;
     }
 
-    public Vacation(long vacation_id, long owner_id, String address, String country, float price, float rating) {
+    public Vacation(long vacation_id, long owner_id, String title, String address, String country, float price, float rating) {
 
         this.id = vacation_id;
         this.owner_id = owner_id;
-
+        this.title = title;
         this.country = country;
         this.price = price;
-        this.bestSeason = bestSeason;
     }
 
-    public Vacation(long id, long owner_id, String street, int zipCode, String city, String country, float price, float rating, String bestSeason) {
+    public Vacation(long id, long owner_id, String title, String street, int zipCode, String city, String country, float price, float rating, String bestSeason, String pictureUrl) {
         this.id = id;
         this.owner_id = owner_id;
+        this.title = title;
         this.street = street;
         this.country = country;
         this.zipCode = zipCode;
@@ -64,6 +66,7 @@ public class Vacation {
         this.price = price;
         this.rating = rating;
         this.bestSeason = bestSeason;
+        this.pictureUrl = pictureUrl;
     }
 
     public long getId() {
@@ -140,5 +143,21 @@ public class Vacation {
 
     public void setOwner_id(long owner_id) {
         this.owner_id = owner_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 }
