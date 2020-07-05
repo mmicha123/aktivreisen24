@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Bright Hotel - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
@@ -48,19 +48,43 @@
     <div class="container">
         <div class="row block-9">
             <div class="col-md-6 pr-md-5">
-                <form action="#">
+                <form action="#" method="post" th:action="@{/addVacation/add}" th:object="${vacation}">
                     <div class="form-group">
-                        <input type="text" class="form-control px-3 py-3" placeholder="Your Name">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="owner_id"
+                                   placeholder="Deine Provider ID">
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control px-3 py-3" placeholder="Your Email">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Straße">
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control px-3 py-3" placeholder="Subject">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="zipCode" placeholder="Postleitzahl">
+                        </label>
                     </div>
                     <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control px-3 py-3"
-                                  placeholder="Message"></textarea>
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="city" placeholder="Stadt">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="country" placeholder="Land">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="price" placeholder="Preis">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="bestSeason"
+                                   placeholder="Beste Saison">
+                        </label>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">

@@ -1,5 +1,8 @@
 package net.aktivreisen24.api;
 
+import net.aktivreisen24.model.Vacation;
+import net.aktivreisen24.repository.JdbcVacationRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +16,12 @@ public class SiteController {
 	/*@Value("${welcome.message}")
 	private String message;*/
 
+	@Autowired
+	JdbcVacationRepo jdbcVacationRepo;
+
 	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-	public String showHome(Model model) {
+	public String showHome(Vacation vacation, Model model) {
+		model.addAttribute("vacations", jdbcVacationRepo.findAll());
 		return "index";
 	}
 
@@ -31,5 +38,12 @@ public class SiteController {
 	@RequestMapping(value = {"/addVacation"}, method = RequestMethod.GET)
 	public String showAddVacation(Model model) {
 		return "addVacation";
+	}
+
+	@RequestMapping(value = {"/vacations"}, method = RequestMethod.GET)
+	public String showAllVacations(Model model, Vacation vacation) {
+		model.addAttribute("vacations", jdbcVacationRepo.findAll());
+
+		return "vacations";
 	}
 }

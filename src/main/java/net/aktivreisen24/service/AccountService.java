@@ -24,8 +24,8 @@ public class AccountService {
 		return accountDao.save(account);
 	}
 
-	public List<Account> findAll() {
-		return accountDao.findAll();
-	}
+	/*public List<Account> findAll() {
+		//return accountDao.findAll();
+	}*/
 
 }

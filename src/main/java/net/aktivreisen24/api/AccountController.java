@@ -25,9 +25,9 @@ public class AccountController {
 		accountService.save(account);
 	}
 
-	@GetMapping
+	/*@GetMapping
 	public List<Account> findAll() {
 		return accountService.findAll();
-	}
+	}*/
 
 }

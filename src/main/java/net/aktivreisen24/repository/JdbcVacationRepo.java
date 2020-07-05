@@ -40,14 +40,17 @@ public class JdbcVacationRepo implements VacationDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO ar_vacation " +
-                    "(owner_id, address, zip, country, price, best_season) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
-            obj.getProviderId();
-            obj.getStreet();
-            obj.getZipCode();
-            obj.getCountry();
-            obj.getPrice();
-            obj.getBestSeason();
+                    "(owner_id, address, zip, city, country, price, best_season) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)", new String[]{"vacation_id"});
+
+            ps.setLong(1, obj.getOwner_id());
+            ps.setString(2, obj.getStreet());
+            ps.setFloat(3, obj.getZipCode());
+            ps.setString(4, obj.getCity());
+            ps.setString(5, obj.getCountry());
+            ps.setFloat(6, obj.getPrice());
+            ps.setString(7, obj.getBestSeason());
+
             return ps;
         }, keyHolder);
 
@@ -80,9 +83,12 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getLong("vacation_id"),
                         rs.getLong("owner_id"),
                         rs.getString("address"),
+                        rs.getInt("zip"),
+                        rs.getString("city"),
                         rs.getString("country"),
                         rs.getFloat("price"),
-                        rs.getFloat("rating")
+                        rs.getFloat("rating"),
+                        rs.getString("best_season")
                 ));
     }
 

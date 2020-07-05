@@ -34,7 +34,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="rooms.html" class="nav-link">Urlaube</a></li>
+                <li class="nav-item"><a href="vacations.html" class="nav-link">Urlaube</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link">Profil</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">Über Uns</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Kontakt</a></li>
@@ -111,19 +111,17 @@
                         <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
                             <div class="row">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label>Erwachsene</label>
+                                    <label>Land</label>
                                     <div class="field-icon-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                         <select name="" id="test" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4+</option>
+                                            <option th:each="vacation : ${vacations}" th:value="${vacation.country}"
+                                                    th:text="${vacation.country}"></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label>Kinder</label>
+                                    <label>Erwachsene</label>
                                     <div class="field-icon-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                         <select name="" id="test2" class="form-control">
@@ -309,6 +307,28 @@
                                     <li><strong>Hotel:</strong> Hotel mit WLAN und einem Entspannungsbad</li>
                                     <li><strong>Größe:</strong> 40m<sup>2</sup></li>
                                     <li><strong>Bed Type:</strong>2x King Size Bett</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item" th:each="vacation : ${vacations}">
+                        <div class="block-34">
+                            <div class="image">
+                                <a href="#"><img src="images/img_4.jpg" alt="Image placeholder"></a>
+                            </div>
+                            <div class="text">
+                                <h2 class="heading">Safarireise in Kapstadt</h2>
+                                <div class="price"><sup>€</sup><span class="number"
+                                                                     th:text="${vacation.price}">525</span><sub>/pro
+                                    Nacht</sub>
+                                </div>
+                                <ul class="specs">
+                                    <li th:inline="text"><strong>Erwachsene:</strong> [[${vacation.price}]]</li>
+                                    <li th:text="${vacation.price}"><strong>Kategorie:</strong></li>
+                                    <li th:text="${vacation.price}"><strong>Hotel:</strong></li>
+                                    <li th:text="${vacation.price}"><strong>Größe:</strong> m<sup>2</sup></li>
+                                    <li th:text="${vacation.price}"><strong>Bed Type:</strong></li>
                                 </ul>
                             </div>
                         </div>
