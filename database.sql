@@ -15,9 +15,9 @@ DROP TABLE if EXISTS ar_commentsupertable CASCADE;
 
 CREATE TABLE ar_account
 (
-    acc_id      Serial,
-    passhash    text,
-    email       varchar(320),
+    acc_id   Serial,
+    passhash text,
+    email    varchar(320),
     PRIMARY KEY (acc_id)
 );
 
@@ -41,13 +41,13 @@ CREATE TABLE ar_account_data
 (
     acc_data_id Serial,
     acc_id      Integer not null,
-    first_name  text not null,
-    last_name   text not null,
+    first_name  text    not null,
+    last_name   text    not null,
     phone       Integer,
     address     text,
     country     text,
     PRIMARY KEY (acc_data_id),
-    FOREIGN KEY (acc_id) REFERENCES ar_account(acc_id) ON DELETE CASCADE
+    FOREIGN KEY (acc_id) REFERENCES ar_account (acc_id) ON DELETE CASCADE
 );
 
 
@@ -93,7 +93,7 @@ CREATE TABLE ar_activity
     rating      real,
     description text,
     category    text,
-    need_equip   text,
+    need_equip  text,
     amt_people  Integer check (amt_people > 0),
     comment_id  Integer,
     PRIMARY KEY (activity_id),
@@ -115,9 +115,9 @@ CREATE TABLE ar_av_compatibility
 CREATE TABLE ar_pictures
 (
     activity_id Integer not null,
-    url         text not null UNIQUE,
+    url         text    not null UNIQUE,
     PRIMARY KEY (activity_id, url),
-    FOREIGN KEY (activity_id) REFERENCES ar_activity(activity_id) on delete cascade
+    FOREIGN KEY (activity_id) REFERENCES ar_activity (activity_id) on delete cascade
 );
 
 
@@ -130,37 +130,96 @@ VALUES ('User');
 insert into ar_role(role_name)
 VALUES ('Provider');
 
-INSERT INTO ar_account(passhash, email) VALUES('mememadsdaffs', 'memem@meme.de');
-INSERT INTO ar_account(passhash, email) VALUES('testdadssafads', 'memem@1meme.de');
+/*
+---TESTS----
 
-INSERT INTO ar_account_role (acc_id, role_id) VALUES (1, (SELECT role_id FROM ar_role WHERE role_name = 'Admin'));
-INSERT INTO ar_account_role (acc_id, role_id) VALUES (2, (SELECT role_id FROM ar_role WHERE role_name = 'Provider'));
+INSERT INTO ar_account(passhash, email)
+VALUES ('password', 'email');
 
-SELECT ar_account.acc_id, passhash, email, role_name FROM ar_account
-    JOIN ar_account_role aar on ar_account.acc_id = aar.acc_id
-    JOIN ar_role ar on aar.role_id = ar.role_id WHERE ar_account.acc_id = 2;
+INSERT INTO ar_account_role (acc_id, role_id)
+VALUES (1, (SELECT role_id FROM ar_role WHERE role_name = 'Admin'));
+--INSERT INTO ar_account_role (acc_id, role_id) VALUES (hier id, (SELECT role_id FROM ar_role WHERE role_name = hier rolle));
+--ids as many as accounts added..   (1 is the id)
+--select between Admin, User, Provider
 
-SELECT ar_account.acc_id, passhash, email, role_name FROM ar_account
-    JOIN ar_account_role aar on ar_account.acc_id = aar.acc_id
-    JOIN ar_role ar on aar.role_id = ar.role_id WHERE ar_account.passhash = 'testdadssafads' and ar_account.email = 'memem@1mem.de';
+INSERT INTO ar_account_data (acc_id, first_name, last_name, phone, address, country)
+VALUES (1, 'FIRSTNAME', 'LASTNAME', 13777213, 'street num zip and city', 'country');
+--ids as many as accounts added..   (1 is the id) like in account_role
 
+INSERT INTO ar_vacation(owner_id, title, address, zip, city, country, price, rating, best_season,
+                        picture_url)
+VALUES (1, 'TITLE', 'street and num', 44001, 'CITY', 'COUNTRY', 4.5, 1.4, 'BEST SEASON', 'URL PICTURE');
 
-INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'adsadsad', 1337, 'afgswqd', 'meme', 3.50, 2.5, 'summer');
-INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'rwsfdf', 124, 'afgswqd', 'meme', 5.50, 5.0, 'summer');
-INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'hgkgj', 4363, 'afgswqd', 'meme', 8.50, 1.3, 'summer');
-INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season) VALUES (2, 'rzt', 658542, 'afgswqd', 'meme', 1.50, 4.14, 'summer');
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
+VALUES(1, 4.5, 1.4, 'DESCRIPTION', 'CATEGORY', 'DEEDED EQUIP', 4);
 
-INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'memeasdadsada', 'test', 'ski', 4);
-INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'asfaas', 'test', 'ski', 4);
-INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'memeaszt54dadsada', 'test', 'ski', 4);
-INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people) VALUES (2, 3.5, 2.5, 'dskakdasksaksaksda', 'test', 'ski', 4);
+-- id is the account id of the owner
+-- price and rating in dot notation
+-- only change after VALUES!!
 
-
-INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (1, 1);
 INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (1, 2);
-INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (1, 4);
+-- ids of vacation and activity can be (1, 1) (1, 2) ... (2, 1)
 
-INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (2, 2);
-INSERT INTO ar_av_compatibility(vacation_id, activity_id) VALUES (2, 3);
+---END TEST----
+*/
 
-SELECT * FROM ar_activity INNER JOIN ar_av_compatibility aac on ar_activity.activity_id = aac.activity_id WHERE aac.vacation_id = 1;
+
+INSERT INTO ar_account(passhash, email)
+VALUES ('mememadsdaffs', 'memem@meme.de');
+INSERT INTO ar_account(passhash, email)
+VALUES ('testdadssafads', 'memem@1meme.de');
+
+INSERT INTO ar_account_role (acc_id, role_id)
+VALUES (1, (SELECT role_id FROM ar_role WHERE role_name = 'Admin'));
+INSERT INTO ar_account_role (acc_id, role_id)
+VALUES (2, (SELECT role_id FROM ar_role WHERE role_name = 'Provider'));
+
+SELECT ar_account.acc_id, passhash, email, role_name
+FROM ar_account
+         JOIN ar_account_role aar on ar_account.acc_id = aar.acc_id
+         JOIN ar_role ar on aar.role_id = ar.role_id
+WHERE ar_account.acc_id = 2;
+
+SELECT ar_account.acc_id, passhash, email, role_name
+FROM ar_account
+         JOIN ar_account_role aar on ar_account.acc_id = aar.acc_id
+         JOIN ar_role ar on aar.role_id = ar.role_id
+WHERE ar_account.passhash = 'testdadssafads'
+  and ar_account.email = 'memem@1mem.de';
+
+
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season)
+VALUES (2, 'adsadsad', 1337, 'afgswqd', 'meme', 3.50, 2.5, 'summer');
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season)
+VALUES (2, 'rwsfdf', 124, 'afgswqd', 'meme', 5.50, 5.0, 'summer');
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season)
+VALUES (2, 'hgkgj', 4363, 'afgswqd', 'meme', 8.50, 1.3, 'summer');
+INSERT INTO ar_vacation(owner_id, address, zip, city, country, price, rating, best_season)
+VALUES (2, 'rzt', 658542, 'afgswqd', 'meme', 1.50, 4.14, 'summer');
+
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
+VALUES (2, 3.5, 2.5, 'memeasdadsada', 'test', 'ski', 4);
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
+VALUES (2, 3.5, 2.5, 'asfaas', 'test', 'ski', 4);
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
+VALUES (2, 3.5, 2.5, 'memeaszt54dadsada', 'test', 'ski', 4);
+INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
+VALUES (2, 3.5, 2.5, 'dskakdasksaksaksda', 'test', 'ski', 4);
+
+
+INSERT INTO ar_av_compatibility(vacation_id, activity_id)
+VALUES (1, 1);
+INSERT INTO ar_av_compatibility(vacation_id, activity_id)
+VALUES (1, 2);
+INSERT INTO ar_av_compatibility(vacation_id, activity_id)
+VALUES (1, 4);
+
+INSERT INTO ar_av_compatibility(vacation_id, activity_id)
+VALUES (2, 2);
+INSERT INTO ar_av_compatibility(vacation_id, activity_id)
+VALUES (2, 3);
+
+SELECT *
+FROM ar_activity
+         INNER JOIN ar_av_compatibility aac on ar_activity.activity_id = aac.activity_id
+WHERE aac.vacation_id = 1;
