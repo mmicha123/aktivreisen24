@@ -21,7 +21,7 @@ public class Vacation {
     private String bestSeason;
     private String pictureUrl;
 
-    private List<Comment> comments;
+    private List<String> comments;
 
     //availabilty und comments fehlt
 
@@ -93,10 +93,6 @@ public class Vacation {
         return rating;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
     public void setStreet(String street) {
         this.street = street;
     }
@@ -111,10 +107,6 @@ public class Vacation {
 
     public void setRating(float rating) {
         this.rating = rating;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public int getZipCode() {
@@ -159,5 +151,13 @@ public class Vacation {
 
     public String getPictureUrl() {
         return pictureUrl;
+    }
+
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
+    public List<String> getComments() {
+        return comments;
     }
 }

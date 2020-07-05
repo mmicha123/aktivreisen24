@@ -13,6 +13,12 @@ public interface VacationDao {
 
     int update(Vacation obj);
 
+    int addComment(Vacation obj, String comment);
+
+    int addComment(long objId, String comment);
+
+    int getAddComments(Vacation obj);
+
     List<Vacation> findAll();
 
     List<Vacation> findAllByProviderId(long id);
