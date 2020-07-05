@@ -123,9 +123,12 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getLong("vacation_id"),
                         rs.getLong("owner_id"),
                         rs.getString("address"),
+                        rs.getInt("zip"),
+                        rs.getString("city"),
                         rs.getString("country"),
                         rs.getFloat("price"),
-                        rs.getFloat("rating")
+                        rs.getFloat("rating"),
+                        rs.getString("best_season")
                 )));
     }
 

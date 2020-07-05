@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Aktivreisen24</a>
+        <a class="navbar-brand" href="index">Aktivreisen24</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -31,12 +31,12 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item active"><a href="vacations.html" class="nav-link">Rooms</a></li>
-                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="index" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="vacations" class="nav-link">Urlaube</a></li>
+                <li class="nav-item"><a href="services" class="nav-link">Profil</a></li>
+                <li class="nav-item"><a href="about" class="nav-link">Über Uns</a></li>
+                <li class="nav-item"><a href="contact" class="nav-link">Kontakt</a></li>
+                <li class="nav-item"><a href="blog" class="nav-link">Blog?</a></li>
             </ul>
         </div>
     </div>
@@ -76,7 +76,8 @@
             <div class="col-lg-4 mb-5" th:each="vacation : ${vacations}">
                 <div class="block-34">
                     <div class="image">
-                        <a href="#"><img src="images/img_1.jpg" alt="Image placeholder"></a>
+                        <a th:href="@{/vacation{id}(id=${vacation.id})}"><img src="images/img_1.jpg"
+                                                                              alt="Image placeholder"></a>
                     </div>
                     <div class="text">
                         <h2 class="heading">Bachelor Room</h2>
@@ -84,7 +85,7 @@
                                                              th:inline="text">[[${vacation.price}]]</span><sub>/per
                             night</sub></div>
                         <ul class="specs">
-                            <li th:inline="text"><strong>Land:</strong></li>
+                            <li th:inline="text"><strong>Land:</strong> [[${vacation.country}]]</li>
                             <li th:inline="text"><strong>Postleitahl:</strong> [[${vacation.zipCode}]]</li>
                             <li th:inline="text"><strong>Stadt:</strong> [[${vacation.city}]]</li>
                             <li th:inline="text"><strong>Adresse:</strong> [[${vacation.street}]]</li>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class VacationService {
 
@@ -20,6 +22,11 @@ public class VacationService {
 
 	public long save(Vacation vacation) {
 		return vacationDao.save(vacation);
+	}
+
+	public Optional<Vacation> findVacationByID(long id) {
+		return vacationDao.findByVacationId(id);
+
 	}
 
 }
