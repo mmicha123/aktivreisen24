@@ -70,6 +70,7 @@ CREATE TABLE ar_vacation
 (
     vacation_id Serial,
     owner_id    Integer not null,
+    title       text,
     address     text,
     zip         Integer,
     city        text,
@@ -78,6 +79,7 @@ CREATE TABLE ar_vacation
     rating      real,
     best_season text,
     comment_id  Integer,
+    picture_url text,
     PRIMARY KEY (vacation_id),
     foreign KEY (owner_id) references ar_account (acc_id),
     foreign KEY (comment_id) references ar_commentsupertable (id)

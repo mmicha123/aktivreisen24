@@ -197,10 +197,10 @@ public class JdbcActivityRepo implements ActivityDao {
     }
 
     /**
-     * list of all Activitys from one provider in database
+     * list of all Activities from one provider in database
      *
      * @param id id off the provider
-     * @return list of Activitys by provider
+     * @return list of Activities by provider
      */
     @Override
     public List<Activity> findAllByProviderId(long id) {
