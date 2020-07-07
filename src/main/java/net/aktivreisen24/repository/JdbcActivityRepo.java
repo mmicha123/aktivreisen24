@@ -281,8 +281,6 @@ public class JdbcActivityRepo implements ActivityDao {
     @Override
     public Optional<Activity> findByActivityId(long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM ar_activity WHERE activity_id = ?", new Object[]{id}, (rs, rowNum) -> {
-            if (rowNum == 0)
-                return Optional.empty();
             Activity tmp = new Activity(
                     rs.getLong("activity_id"),
                     rs.getLong("owner_id"),

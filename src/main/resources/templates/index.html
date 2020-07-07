@@ -37,9 +37,10 @@
                 <li class="nav-item active"><a href="index" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="vacations" class="nav-link">Urlaube</a></li>
                 <li class="nav-item"><a href="services" class="nav-link">Profil</a></li>
-                <li class="nav-item"><a href="about" class="nav-link">Über Uns</a></li>
-                <li class="nav-item"><a href="contact" class="nav-link">Kontakt</a></li>
-                <li class="nav-item"><a href="blog" class="nav-link">Blog?</a></li>
+                <li class="nav-item"><a href="about" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="contact" class="nav-link">Registrieren</a></li>
+
+                <li class="nav-item"><a href="addVacation" class="nav-link">Reiseziel hinzufügen</a></li>
             </ul>
         </div>
     </div>
@@ -93,50 +94,70 @@
         <div class="col-md-12">
 
             <div class="block-32">
-                <form action="#">
+                <form action="#" method="get" th:action="@{/vacationsByFilter}">
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                            <label>Check In</label>
+                            <label>Best Season</label>
                             <div class="field-icon-wrap">
-                                <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkin_date" class="form-control">
+
+                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                <select id="bestSeason" name="bestSeason" class="form-control">
+                                    <option th:each="season : ${seasons}" th:value="${season}"
+                                            th:text="${season}"></option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                            <label>Check Out</label>
                             <div class="field-icon-wrap">
-                                <div class="icon"><span class="icon-calendar"></span></div>
-                                <input type="text" id="checkout_date" class="form-control">
+
+                                <label>Land</label>
+                                <div class="field-icon-wrap">
+                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                    <select id="country" name="country" class="form-control">
+                                        <option th:each="country : ${countries}" th:value="${country}"
+                                                th:text="${country}"></option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
                             <div class="row">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label>Land</label>
+                                    <label>€ (p.d.) von:</label>
                                     <div class="field-icon-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="test" class="form-control">
-                                            <option th:each="vacation : ${vacations}" th:value="${vacation.country}"
-                                                    th:text="${vacation.country}"></option>
+                                        <select id="priceFrom" name="priceFrom" class="form-control">
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="150">150</option>
+                                            <option value="200">200</option>
+                                            <option value="250">250</option>
+                                            <option value="300">300</option>
+                                            <option value="350">350</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label>Erwachsene</label>
+                                    <label>€ (p.d.) bis:</label>
                                     <div class="field-icon-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="test2" class="form-control">
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4+</option>
+                                        <select id="priceTo" name="priceTo" class="form-control">
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="150">150</option>
+                                            <option value="200">200</option>
+                                            <option value="250">250</option>
+                                            <option value="300">300</option>
+                                            <option value="350">350</option>
                                         </select>
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-3 align-self-end">
-                            <button class="btn btn-primary btn-block">Prüfe Reisen</button>
+                            <button class="btn btn-primary btn-block">Zeige Reisen</button>
                         </div>
                     </div>
                 </form>
@@ -233,103 +254,26 @@
                 <div class="nonloop-block-13 owl-carousel">
 
 
-                    <div class="item">
+                    <div class="item" th:each="vacation : ${vacationsTop5}">
                         <div class="block-34">
                             <div class="image">
-                                <a href="#"><img src="images/harz.jpg" alt="Image placeholder"></a>
+                                <a th:href="@{/vacation{id}(id=${vacation.id})}"><img
+                                        th:attr="src=${vacation.pictureUrl},alt=${vacation.pictureUrl}"></a>
                             </div>
                             <div class="text">
-                                <h2 class="heading">Wolfühlhotel im Harz</h2>
-                                <div class="price"><sup>€</sup><span class="number">156</span><sub>/pro Nacht</sub>
-                                </div>
-                                <ul class="specs">
-                                    <li><strong>Land:</strong> Deutschland</li>
-                                    <li><strong>Ort:</strong> Braunlage</li>
-                                    <li><strong>Hotel:</strong> Hotel mit WLAN und einem Entspannungsbad</li>
-                                    <li><strong>Beste Saison:</strong> Sommer</li>
-                                    <li><strong>Bewertung:</strong> 4/5</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="block-34">
-                            <div class="image">
-                                <a href="#"><img src="images/img_2.jpg" alt="Image placeholder"></a>
-                            </div>
-                            <div class="text">
-                                <h2 class="heading">Kletterurlaub in Garmisch-Patenkirchen</h2>
-                                <div class="price"><sup>€</sup><span class="number">320</span><sub>/pro Nacht</sub>
-                                </div>
-                                <ul class="specs">
-                                    <li><strong>Erwachsene:</strong> Bis zu 4</li>
-                                    <li><strong>Kategorie:</strong> Kletterurlaub</li>
-                                    <li><strong>Hotel:</strong> Hotel mit WLAN und einem Entspannungsbad</li>
-                                    <li><strong>Größe:</strong> 60m<sup>2</sup></li>
-                                    <li><strong>Bed Type:</strong> King Size Bett</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="block-34">
-                            <div class="image">
-                                <a href="#"><img src="images/img_3.jpg" alt="Image placeholder"></a>
-                            </div>
-                            <div class="text">
-                                <h2 class="heading">Surfreise in Florida</h2>
-                                <div class="price"><sup>€</sup><span class="number">425</span><sub>/pro Nacht</sub>
-                                </div>
-                                <ul class="specs">
-                                    <li><strong>Erwachsene:</strong> Bis zu 6</li>
-                                    <li><strong>Kategorie:</strong> Surfreise</li>
-                                    <li><strong>Hotel:</strong> Hotel mit WLAN und einem Entspannungsbad</li>
-                                    <li><strong>Größe:</strong> 100m<sup>2</sup></li>
-                                    <li><strong>Bed Type:</strong>3x King Size Bett</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="block-34">
-                            <div class="image">
-                                <a href="#"><img src="images/img_4.jpg" alt="Image placeholder"></a>
-                            </div>
-                            <div class="text">
-                                <h2 class="heading">Safarireise in Kapstadt</h2>
-                                <div class="price"><sup>€</sup><span class="number">525</span><sub>/pro Nacht</sub>
-                                </div>
-                                <ul class="specs">
-                                    <li><strong>Erwachsene:</strong> Bis zu 4</li>
-                                    <li><strong>Kategorie:</strong> Safari</li>
-                                    <li><strong>Hotel:</strong> Hotel mit WLAN und einem Entspannungsbad</li>
-                                    <li><strong>Größe:</strong> 40m<sup>2</sup></li>
-                                    <li><strong>Bed Type:</strong>2x King Size Bett</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item" th:each="vacation : ${vacations}">
-                        <div class="block-34">
-                            <div class="image">
-                                <a href="#"><img src="images/img_4.jpg" alt="Image placeholder"></a>
-                            </div>
-                            <div class="text">
-                                <h2 class="heading">Safarireise in Kapstadt</h2>
+                                <h2 class="heading" th:inline="text">[[${vacation.title}]]</h2>
                                 <div class="price"><sup>€</sup><span class="number"
-                                                                     th:text="${vacation.price}">525</span><sub>/pro
-                                    Nacht</sub>
-                                </div>
+                                                                     th:inline="text">[[${vacation.price}]]</span><sub>/per
+                                    night</sub></div>
                                 <ul class="specs">
-                                    <li th:inline="text"><strong>Erwachsene:</strong> [[${vacation.price}]]</li>
-                                    <li th:text="${vacation.price}"><strong>Kategorie:</strong></li>
-                                    <li th:text="${vacation.price}"><strong>Hotel:</strong></li>
-                                    <li th:text="${vacation.price}"><strong>Größe:</strong> m<sup>2</sup></li>
-                                    <li th:text="${vacation.price}"><strong>Bed Type:</strong></li>
+                                    <li th:inline="text"><strong>Land:</strong> [[${vacation.country}]]</li>
+                                    <li th:inline="text"><strong>Postleitahl:</strong> [[${vacation.zipCode}]]</li>
+                                    <li th:inline="text"><strong>Stadt:</strong> [[${vacation.city}]]</li>
+                                    <li th:inline="text"><strong>Adresse:</strong> [[${vacation.street}]]</li>
+                                    <li th:inline="text"><strong>Beste Saison:</strong> [[${vacation.bestSeason}]]</li>
+                                    <li th:inline="text"><strong>Bewertung:</strong> [[${vacation.rating}]]</li>
+
+
                                 </ul>
                             </div>
                         </div>

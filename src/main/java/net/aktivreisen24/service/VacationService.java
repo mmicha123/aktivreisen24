@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,6 +27,23 @@ public class VacationService {
 
 	public Optional<Vacation> findVacationByID(long id) {
 		return vacationDao.findByVacationId(id);
+
+	}
+
+	public List<Vacation> findTop5() {
+		return vacationDao.findTop5();
+	}
+
+	public List<String> findSeasons() {
+		return vacationDao.findSeasons();
+	}
+
+	public List<String> findCountries() {
+		return vacationDao.findCountries();
+	}
+
+	public List<Vacation> findVacationsByFilter(String bestSeason, String country, Float priceFrom, Float priceTo) {
+		return vacationDao.findVacationsByFilter(bestSeason, country, priceFrom, priceTo);
 
 	}
 

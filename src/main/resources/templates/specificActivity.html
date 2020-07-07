@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index">Aktivreisen24</a>
+        <a class="navbar-brand" href="index.html">Aktivreisen24</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -45,58 +45,48 @@
 <!-- END nav -->
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('images/bg_2.jpg');"
-     data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" data-stellar-background-ratio="0.5"
+     th:style="'background-image:url(' + ${activity.picturesURL[0]} + ');'">"
+
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
-                <span class="subheading-sm">Rooms</span>
-                <h2 class="heading">Unsere Reiseziele</h2>
+                <span class="subheading-sm">Deine Aktivität</span>
+                <h2 class="heading" th:inline="text">[[${activity.category}]]</h2>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="site-section bg-light">
+<div class="site-section">
     <div class="container">
-
-
-
-
-        <div class="row mb-5 pt-5 justify-content-center">
-            <div class="col-md-7 text-center section-heading">
-                <h2 class="heading">Alle Reiseziele</h2>
-                <p>Schaue dir hier alle unsere verfügbaren Reiseziele an!</p>
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <img th:attr="src=${activity.picturesURL[1]},alt=${activity.picturesURL[1]}" class="img-fluid">
             </div>
         </div>
-
         <div class="row">
 
-
-            <div class="col-lg-4 mb-5" th:each="vacation : ${vacations}">
-                <div class="block-34">
-                    <div class="image">
-                        <a th:href="@{/vacation{id}(id=${vacation.id})}"><img
-                                th:attr="src=${vacation.pictureUrl},alt=${vacation.pictureUrl}"></a>
-                    </div>
-                    <div class="text">
-                        <h2 class="heading" th:inline="text">[[${vacation.title}]]</h2>
-                        <div class="price"><sup>$</sup><span class="number"
-                                                             th:inline="text">[[${vacation.price}]]</span><sub>/per
-                            night</sub></div>
-                        <ul class="specs">
-                            <li th:inline="text"><strong>Land:</strong> [[${vacation.country}]]</li>
-                            <li th:inline="text"><strong>Postleitahl:</strong> [[${vacation.zipCode}]]</li>
-                            <li th:inline="text"><strong>Stadt:</strong> [[${vacation.city}]]</li>
-                            <li th:inline="text"><strong>Adresse:</strong> [[${vacation.street}]]</li>
-                            <li th:inline="text"><strong>Beste Saison:</strong> [[${vacation.bestSeason}]]</li>
-                            <li th:inline="text"><strong>Bewertung:</strong> [[${vacation.rating}]]</li>
+            <div class="text">
+                <h2 class="heading" th:inline="text">[[${activity.category}]]</h2>
 
 
-                        </ul>
-                    </div>
-                </div>
+                <ul class="specs">
+                    <li>
+                        <div class="price"><strong>Preis: </strong><sup>$</sup><span class="number"
+                                                                                     th:inline="text">[[${activity.price}]]</span><sub>/pro
+                            Nacht</sub></div>
+                    </li>
+
+
+                    <li th:inline="text"><strong>Bewertung:</strong> [[${activity.rating}]] / 5</li>
+                    <li th:inline="text"><strong>Beschreibung:</strong> [[${activity.description}]]</li>
+                    <li th:inline="text"><strong>Kategorie:</strong> [[${activity.category}]]</li>
+                    <li th:inline="text"><strong>Benötigtes Equipment:</strong> [[${activity.neededEquip}]]</li>
+                    <li th:inline="text"><strong>Personen:</strong> [[${activity.amtPeople}]]</li>
+
+                </ul>
             </div>
 
         </div>
@@ -125,9 +115,7 @@
                     </div>
                     <div class="text">
                         <blockquote>
-                            <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque
-                                dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae
-                                error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
+                            <p>&rdquo; [[${activity.comments[0]}]] &ldquo;</p>
                         </blockquote>
                     </div>
                 </div>
@@ -177,23 +165,6 @@
     </div>
 </div>
 
-<div class="block-22">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-7 text-center">
-                <h2 class="heading mb-4">Be Sure To Get Our Promos</h2>
-                <form action="#" class="subscribe">
-                    <div class="form-group">
-                        <input type="email" class="form-control email" placeholder="Enter your email">
-                        <!-- <input type="submit" class="btn btn-primary submit"> -->
-                        <button type="submit" class="btn btn-primary submit">Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <footer class="footer">
     <div class="container">
@@ -205,50 +176,7 @@
                     accusantium tempore dolores sunt.</p>
                 <p><a href="#" class="btn btn-primary px-4">Button</a></p>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <h3 class="heading-section">Blog</h3>
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="images/img_1.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="images/img_2.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="images/img_3.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-6 col-lg-4">
                 <div class="block-23">
                     <h3 class="heading-section">Contact Info</h3>

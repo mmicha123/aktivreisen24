@@ -22,6 +22,9 @@ public class SiteController {
 	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
 	public String showHome(Vacation vacation, Model model) {
 		model.addAttribute("vacations", jdbcVacationRepo.findAll());
+		model.addAttribute("vacationsTop5", jdbcVacationRepo.findTop5());
+		model.addAttribute("seasons", jdbcVacationRepo.findSeasons());
+		model.addAttribute("countries", jdbcVacationRepo.findCountries());
 		return "index";
 	}
 

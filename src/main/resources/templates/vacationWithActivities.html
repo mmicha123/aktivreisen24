@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">BrightHotel</a>
+        <a class="navbar-brand" href="index.html">Aktivreisen24</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -31,12 +31,13 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index" class="nav-link">Home</a></li>
-                <li class="nav-item active"><a href="vacations" class="nav-link">Urlaube</a></li>
+                <li class="nav-item active"><a href="index" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="vacations" class="nav-link">Urlaube</a></li>
                 <li class="nav-item"><a href="services" class="nav-link">Profil</a></li>
-                <li class="nav-item"><a href="about" class="nav-link">Über Uns</a></li>
-                <li class="nav-item"><a href="contact" class="nav-link">Kontakt</a></li>
-                <li class="nav-item"><a href="blog" class="nav-link">Blog?</a></li>
+                <li class="nav-item"><a href="about" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="contact" class="nav-link">Registrieren</a></li>
+
+                <li class="nav-item"><a href="addVacation" class="nav-link">Reiseziel hinzufügen</a></li>
             </ul>
         </div>
     </div>
@@ -44,13 +45,14 @@
 <!-- END nav -->
 
 
-<div class="block-30 block-30-sm item" style="background-image: url('images/bg_2.jpg');"
-     data-stellar-background-ratio="0.5">
+<div class="block-30 block-30-sm item" data-stellar-background-ratio="0.5"
+     th:style="'background-image:url(' + ${vacation.pictureUrl} + ');'">"
+
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10">
                 <span class="subheading-sm">Wähle deine Aktivitäten</span>
-                <h2 class="heading">Das Hotel</h2>
+                <h2 class="heading" th:inline="text">[[${vacation.country}]]</h2>
             </div>
         </div>
     </div>
@@ -61,13 +63,13 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-12">
-                <img src="images/bg_1.jpg" alt="Image placeholder" class="img-fluid">
+                <img th:attr="src=${vacation.pictureUrl},alt=${vacation.pictureUrl}" class="img-fluid">
             </div>
         </div>
         <div class="row">
 
             <div class="text">
-                <h2 class="heading">Bachelor Room</h2>
+                <h2 class="heading" th:inline="text">[[${vacation.title}]]</h2>
 
 
                 <ul class="specs">
@@ -91,153 +93,81 @@
     </div>
 </div>
 
-<div class="site-section">
+<div class="site-section  bg-light">
     <div class="container">
         <div class="row mb-5 text-center">
             <div class="col-md-12 mb-5">
-                <h2>The Team</h2>
+                <h2>Die Aktivitäten</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-3">
+
+
+            <div class="col-md-6 col-lg-3" th:each="activity:${activities}">
                 <div class="block-38 text-center">
                     <div class="block-38-img">
                         <div class="block-38-header">
-                            <img src="images/person_1.jpg" alt="Image placeholder">
-                            <h3 class="block-38-heading">Elizabeth Graham</h3>
-                            <p class="block-38-subheading">CEO</p>
+                            <a th:href="@{/activity{id}(id=${activity.id})}"> <img
+                                    th:attr="src=${activity.picturesURL[0]},alt=${activity.picturesURL[0]}"></a>
+                            <h3 class="block-38-heading" th:inline="text"> [[${activity.category}]] </h3>
+                            <p class="block-38-subheading" th:inline="text">[[${activity.price}]] €</p>
+                            <p class="block-38-subheading" th:inline="text">Bewertung: [[${activity.rating}]] / 5</p>
                         </div>
                         <div class="block-38-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
+                            <p th:inline="text">[[${activity.description}]] </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="block-38 text-center">
-                    <div class="block-38-img">
-                        <div class="block-38-header">
-                            <img src="images/person_2.jpg" alt="Image placeholder">
-                            <h3 class="block-38-heading">Jennifer Greive</h3>
-                            <p class="block-38-subheading">President</p>
-                        </div>
-                        <div class="block-38-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="block-38 text-center">
-                    <div class="block-38-img">
-                        <div class="block-38-header">
-                            <img src="images/person_3.jpg" alt="Image placeholder">
-                            <h3 class="block-38-heading">Patrick Marx</h3>
-                            <p class="block-38-subheading">Marketer</p>
-                        </div>
-                        <div class="block-38-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="block-38 text-center">
-                    <div class="block-38-img">
-                        <div class="block-38-header">
-                            <img src="images/person_2.jpg" alt="Image placeholder">
-                            <h3 class="block-38-heading">Mike Coolbert</h3>
-                            <p class="block-38-subheading">Partner</p>
-                        </div>
-                        <div class="block-38-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit
-                                distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
-    </div>
-</div>
-
-
-<div class="block-31 mb-5" style="position: relative;">
-    <div class="owl-carousel loop-block-31">
-        <div class="block-30 no-overlay item" style="background-image: url('images/bg_2.jpg');"></div>
-        <div class="block-30 no-overlay item" style="background-image: url('images/bg_1.jpg');"></div>
-        <div class="block-30 no-overlay item" style="background-image: url('images/bg_3.jpg');"></div>
     </div>
 </div>
 
 <div class="site-section">
     <div class="container">
-        <div class="row">
+        <div class="row block-9">
+            <div class="col-md-6 pr-md-5">
+                <form action="#" method="post" th:action="@{/addVacation/add}" th:object="${vacation}">
 
-            <div class="col-md-6 col-lg-4">
-                <div class="media block-6">
-                    <div class="icon"><span class="flaticon-double-bed"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Luxury Rooms</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Check In">
+                        </label>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="media block-6">
-                    <div class="icon"><span class="flaticon-wifi"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Fast &amp; Free Wifi</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Check Out">
+                        </label>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="media block-6">
-                    <div class="icon"><span class="flaticon-customer-service"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Call Us 24/7</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="media block-6">
-                    <div class="icon"><span class="flaticon-taxi"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Travel Accomodation</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Aktivität 1">
+                        </label>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="media block-6">
-                    <div class="icon"><span class="flaticon-credit-card"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Accepts Credit Card</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="zipCode" placeholder="Aktivität 2">
+                        </label>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="media block-6">
-                    <div class="icon"><span class="flaticon-dinner"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading">Restaurant</h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic.</p>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="city" placeholder="Aktivität 3">
+                        </label>
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="text" class="form-control px-3 py-3" name="country" placeholder="Aktivität 4">
+                        </label>
+                    </div>
 
+                    <div class="form-group">
+                        <input type="submit" value="Zeige Bestellbestätigung" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
@@ -327,50 +257,7 @@
                     accusantium tempore dolores sunt.</p>
                 <p><a href="#" class="btn btn-primary px-4">Button</a></p>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <h3 class="heading-section">Blog</h3>
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="images/img_1.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="images/img_2.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block-21 d-flex mb-4">
-                    <figure class="mr-3">
-                        <img src="images/img_3.jpg" alt="" class="img-fluid">
-                    </figure>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Our Luxury Hotel &amp; Restaurants</a></h3>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-6 col-lg-4">
                 <div class="block-23">
                     <h3 class="heading-section">Contact Info</h3>

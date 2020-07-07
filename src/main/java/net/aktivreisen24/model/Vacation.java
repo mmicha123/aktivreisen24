@@ -15,8 +15,8 @@ public class Vacation {
     private int zipCode;
     private String city;
 
-    private float price;
-    private float rating;
+    private Float price;
+	private float rating;
 
     private String bestSeason;
     private String pictureUrl;
@@ -28,7 +28,7 @@ public class Vacation {
     public Vacation() {
     }
 
-    public Vacation(@JsonProperty("id") long id,
+	public Vacation(@JsonProperty("id") long id,
                     @JsonProperty("owner_id") long owner_id,
                     @JsonProperty("street") String street,
                     @JsonProperty("country") String country,

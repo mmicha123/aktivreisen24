@@ -15,16 +15,22 @@ public interface VacationDao {
 
     int addComment(Vacation obj, String comment);
 
-    int addComment(long objId, String comment);
+	int addComment(long objId, String comment);
 
-    int getAddComments(Vacation obj);
+	int getAddComments(Vacation obj);
 
-    List<Vacation> findAll();
+	List<Vacation> findAll();
 
-    List<Vacation> findAllByProviderId(long id);
+	List<Vacation> findAllByProviderId(long id);
 
-    Optional<Vacation> findByVacationId(long id);
+	Optional<Vacation> findByVacationId(long id);
 
+	List<Vacation> findTop5();
 
+	public List<String> findSeasons();
+
+	public List<String> findCountries();
+
+	public List<Vacation> findVacationsByFilter(String bestSeason, String country, Float priceFrom, Float priceTo);
 
 }

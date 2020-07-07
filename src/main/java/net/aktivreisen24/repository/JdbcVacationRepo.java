@@ -188,10 +188,59 @@ public class JdbcVacationRepo implements VacationDao {
                         rs.getString("country"),
                         rs.getFloat("price"),
                         rs.getFloat("rating"),
-                        rs.getString("best_season")
+                        rs.getString("best_season"),
+                        rs.getString("picture_url")
                 )));
     }
 
+    @Override
+    public List<Vacation> findTop5() {
+        return jdbcTemplate.query("SELECT * FROM ar_vacation ORDER BY rating desc LIMIT 5", (rs, rowNum) ->
+                new Vacation(
+                        rs.getLong("vacation_id"),
+                        rs.getLong("owner_id"),
+                        rs.getString("title"),
+                        rs.getString("address"),
+                        rs.getInt("zip"),
+                        rs.getString("city"),
+                        rs.getString("country"),
+                        rs.getFloat("price"),
+                        rs.getFloat("rating"),
+                        rs.getString("best_season"),
+                        rs.getString("picture_url")
+                ));
+    }
+
+    @Override
+    public List<String> findSeasons() {
+        return jdbcTemplate.query("SELECT distinct best_season FROM ar_vacation", (rs, rowNum) ->
+                new String(rs.getString("best_season")));
+    }
+
+    @Override
+    public List<String> findCountries() {
+        return jdbcTemplate.query("SELECT distinct country FROM ar_vacation", (rs, rowNum) ->
+                new String(rs.getString("country")));
+    }
+
+    @Override
+    public List<Vacation> findVacationsByFilter(String bestSeason, String country, Float priceFrom, Float priceTo) {
+
+        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = ? AND country = ? and price > ? and price < ?", new Object[]{bestSeason, country, priceFrom, priceTo}, (rs, rowNum) ->
+                new Vacation(
+                        rs.getLong("vacation_id"),
+                        rs.getLong("owner_id"),
+                        rs.getString("title"),
+                        rs.getString("address"),
+                        rs.getInt("zip"),
+                        rs.getString("city"),
+                        rs.getString("country"),
+                        rs.getFloat("price"),
+                        rs.getFloat("rating"),
+                        rs.getString("best_season"),
+                        rs.getString("picture_url")
+                ));
+    }
 
     private long getIdCommentSuper() {
         KeyHolder keyHolder = new GeneratedKeyHolder();
