@@ -312,8 +312,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES (1, 'https://i2.wp.com/www.map-
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 11 WHERE activity_id = 1;
-INSERT INTO ar_comments(super_id, comment) VALUES (11, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (11, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (11, 'An sich schöne Rafting Tour die interessant gestaltet wurde. Personal an sich nett, nur manche Kommentare waren sehr unangebracht. Ich versteh viel Spaß, aber man kennt sich einfach nicht wirklich. Als Kunde, der dafür bezahlt, möchte ich einfach nicht so angeredet werden.');
+INSERT INTO ar_comments(super_id, comment) VALUES (11, 'War ein super Action Tag.  Super Team  die uns durch die Fluten der Saalach führten. Hatten richtig viel Spaß gemacht. Kann man nur weiter Empfehlen.');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 84.50, 4.2,
@@ -326,8 +326,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES (2, 'https://media.gettyimages.
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 12 WHERE activity_id = 2;
-INSERT INTO ar_comments(super_id, comment) VALUES (12, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (12, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (12, 'Wir haben uns ein Jetski über das Wochenende ausgeliehen und hatten super viel spaß damit. Der Kontakt war sehr nett und wir hatten keinerlei Probleme. Gerne wieder !');
+INSERT INTO ar_comments(super_id, comment) VALUES (12, 'Super Kontakt, super Service, hat Spaß gemacht! Wird auf jeden Fall wiederholt!');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 84.5, 3.2,
@@ -340,8 +340,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES (3, 'https://www.blick.de/DYNIM
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 13 WHERE activity_id = 3;
-INSERT INTO ar_comments(super_id, comment) VALUES (13, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (13, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (13, 'Sehr coole und spannende Stadttour der etwas anderen Art! Danke an unseren Guide, Michael, für die tollen Insights! Auf jeden Fall empfehlenswert!');
+INSERT INTO ar_comments(super_id, comment) VALUES (13, 'Danke für die Radtour-Empfehlungen!');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 110, 3.3,
@@ -354,8 +354,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(4, 'https://images.unsplash.com
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 14 WHERE activity_id = 4;
-INSERT INTO ar_comments(super_id, comment) VALUES (14, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (14, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (14, 'Berge sind immer schön!');
+INSERT INTO ar_comments(super_id, comment) VALUES (14, 'Unterm Strich große Berge. Anstrengend da hoch zu laufen, dann doch lieber wieder Flachland.');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 25, 3.9,
@@ -368,8 +368,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(5, 'https://images.unsplash.com
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 15 WHERE activity_id = 5;
-INSERT INTO ar_comments(super_id, comment) VALUES (15, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (15, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (15, 'Mit dem kleinen Bus durch die Altstadt kann ich nicht empfehlen . Meine Frau hatte ein Sitzplatz , von dem aus  konnte man nur zu einer Seite heraus schauen . Die Scheiben waren beschlagen , und mir persönlich war alles zu eng ');
+INSERT INTO ar_comments(super_id, comment) VALUES (15, 'Super Touren zum ersten Eindruck der Stadt! Wichtig: Die Tickets müssen am Startpunkt ausgedruckt werden, auch wenn sie online bezogen worden sein sollten. Sonst sind sie NICHT gültig. Dafür sind sie ab dann aber für den ÖPNV als Karte nutzbar');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 59, 4.4,
@@ -381,8 +381,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(6, 'https://images.unsplash.com
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 16 WHERE activity_id = 6;
-INSERT INTO ar_comments(super_id, comment) VALUES (16, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (16, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (16, 'Wir sind hier nach unserem Spaziergang durch den Wald auf ein Getränk sowie Würstchen und Gulaschsuppe eingekehrt. Die Hütte ist sehr gemütlich, der Service freundlich und die Speisen geschmacklich und preislich in Ordnung. Runter gings dann mit der Rodel.');
+INSERT INTO ar_comments(super_id, comment) VALUES (16, 'Rodelhütte Geschlossen um 18.30 Uhr bei Vollmond. Rodelbahn hervoragend');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 49, 2.7,
@@ -395,8 +395,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(7, 'https://images.unsplash.com
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 17 WHERE activity_id = 7;
-INSERT INTO ar_comments(super_id, comment) VALUES (17, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (17, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (17, 'Gepflegte Anlage mit guten Plätzen, zudem nette Mitglieder und eine schöne Gastronomie 👍');
+INSERT INTO ar_comments(super_id, comment) VALUES (17, 'Tolle Tennisanlage mit schöner Gastronomie.');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 99, 4.8,
@@ -409,8 +409,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(8, 'https://images.unsplash.com
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 18 WHERE activity_id = 8;
-INSERT INTO ar_comments(super_id, comment) VALUES (18, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (18, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (18, 'Tolles Erlebnis. Cooler Typ, fachkundige Einweisung und eine sehr, sehr schöne Tour durch die reizvolle Landschaft. Empfehlenswert!');
+INSERT INTO ar_comments(super_id, comment) VALUES (18, 'Sehr gut alles top aber die Quads sind nicht so toll sehr nette Besitzer');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 220, 4.1,
@@ -423,8 +423,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(9, 'https://images.unsplash.com
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 19 WHERE activity_id = 9;
-INSERT INTO ar_comments(super_id, comment) VALUES (19, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (19, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (19, 'Großartiges Erlebnis. Mit Herrn Haese kann man sich keinen besseren Piloten wünschen, Sicherheit steht an erster Stelle, wir haben uns jederzeit sehr gut aufgehoben gefühlt. Außerdem merkt man, das man hier zu Gast ist bei jemandem, der seine Begeisterung mit größter Leidenschaft teilt, jede Menge Humor mitbringt und sich viel Zeit lässt um es für alle mitfahrenden ein tolles Erlebnis werden zu lassen. Und er beantwortet alle Fragen, auch die, die er bestimmt schon hunderte Male gestellt bekommen hat, mit viel Charme und Witz. Fazit: Absolut Empfehlenswert!');
+INSERT INTO ar_comments(super_id, comment) VALUES (19, 'Wir haben eine wunderschöne Ballonfahrt erlebt. Herr Haese macht auf uns einen kompetenten Eindruck - ferner wurden wir in den Auf- und Abbau des Ballons einbezogen. Der Höhepunkt war die Taufe mit Urkunde! Ein Erlebnis, was man so schnell nicht vergisst!');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 18, 3.9,
@@ -437,8 +437,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(10, 'https://img1.klettern.de/k
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 20 WHERE activity_id = 10;
-INSERT INTO ar_comments(super_id, comment) VALUES (20, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (20, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (20, 'Gut zu erreichen mit dem Auto man kann gut Parken. Personal war nett. Preis war okay. Von der Schwierigkeit ist für jeden was dabei. Man kann sich dort Schuhe ausleihen diese sind auch voll okay');
+INSERT INTO ar_comments(super_id, comment) VALUES (20, 'Super freundliches Personal. Sehr gute Einweisung und echt tolle Kletterparcour für jedes Niveau. Kommen gerne wieder');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 49, 4.2,
@@ -451,8 +451,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(11, 'https://images.unsplash.co
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 21 WHERE activity_id = 11;
-INSERT INTO ar_comments(super_id, comment) VALUES (21, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (21, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (21, 'Ich habe den SSI—-Theorie-Kurs „Science of Diving“ hier gebucht und abgeschlossen. Von der ersten Kontaktaufnahme bis zum Abschluss des Kurses hat alles super geklappt. Die Organisation und Kommunikation war sehr gut. Lothar hat sich viel Zeit genommen um offene Fragen und auch viele andere Themen rund um das Tauchen mit mir zu besprechen. Ich kann eine uneingeschränkte Empfehlung aussprechen. Danke Lothar für den Unterricht.');
+INSERT INTO ar_comments(super_id, comment) VALUES (21, 'Super Tauchschule. Kann ich nur weiterempfehlen. Wir haben uns sehr wohl gefühlt. Es wurde alles sehr gut vermittelt und auf einen individuell eingegangen. Das macht Spaß auf mehr. Wir werden sicherlich weiter machen.');
 
 INSERT INTO ar_activity(owner_id, price, rating, description, category, need_equip, amt_people)
 VALUES (6, 69, 4.9,
@@ -465,8 +465,8 @@ INSERT INTO ar_pictures(activity_id, url) VALUES(12, 'https://images.unsplash.co
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
 UPDATE ar_activity SET comment_id = 22 WHERE activity_id = 12;
-INSERT INTO ar_comments(super_id, comment) VALUES (22, '');
-INSERT INTO ar_comments(super_id, comment) VALUES (22, '');
+INSERT INTO ar_comments(super_id, comment) VALUES (22, 'Sehr schöner, abwechslungsreicher Wanderweg. Sehr zu empfehlen');
+INSERT INTO ar_comments(super_id, comment) VALUES (22, 'Ein Ort mit viel Natur und sehr ruhig.');
 
 INSERT INTO ar_av_compatibility(vacation_id, activity_id)
 VALUES (1, 11);
