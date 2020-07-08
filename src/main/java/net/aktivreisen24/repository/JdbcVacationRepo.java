@@ -225,30 +225,23 @@ public class JdbcVacationRepo implements VacationDao {
 
     @Override
     public List<Vacation> findVacationsByFilter(String bestSeason, String country, Float priceFrom, Float priceTo) {
-        if(bestSeason.equals("1"))
-            bestSeason = null;
-        if(country.equals("1"))
-            country = null;
-        if(priceFrom == 1)
-            priceFrom = null;
-        if(priceTo == 1)
-            priceTo = null;
 
 
-        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = (SELECT coalesce(NULL, ?)) AND country = (SELECT coalesce(NULL, ?)) and price > (SELECT coalesce(NULL, ?)) and price < (SELECT coalesce(NULL, ?))", new Object[]{bestSeason, country, priceFrom, priceTo}, (rs, rowNum) ->
-                new Vacation(
-                        rs.getLong("vacation_id"),
-                        rs.getLong("owner_id"),
-                        rs.getString("title"),
-                        rs.getString("address"),
-                        rs.getInt("zip"),
-                        rs.getString("city"),
-                        rs.getString("country"),
-                        rs.getFloat("price"),
-                        rs.getFloat("rating"),
-                        rs.getString("best_season"),
-                        rs.getString("picture_url")
-                ));
+        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = ? AND country = ? AND price > ? AND price > ?",
+                new Object[]{bestSeason, country, priceFrom, priceTo}, (rs, rowNum) ->
+                        new Vacation(
+                                rs.getLong("vacation_id"),
+                                rs.getLong("owner_id"),
+                                rs.getString("title"),
+                                rs.getString("address"),
+                                rs.getInt("zip"),
+                                rs.getString("city"),
+                                rs.getString("country"),
+                                rs.getFloat("price"),
+                                rs.getFloat("rating"),
+                                rs.getString("best_season"),
+                                rs.getString("picture_url")
+                        ));
     }
 
     private long getIdCommentSuper() {
