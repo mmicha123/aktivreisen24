@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -22,6 +23,10 @@ public class AccountService {
 
 	public long save(Account account) {
 		return accountDao.save(account);
+	}
+
+	public Optional<Account> findByLogin(String pw, String mail) {
+		return accountDao.findByLogin(pw, mail);
 	}
 
 	/*public List<Account> findAll() {

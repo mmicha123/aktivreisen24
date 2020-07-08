@@ -5,7 +5,7 @@ import java.util.List;
 public class Activity {
 
     private long id;
-    private final long provider_id;
+	private long provider_id;
 
     private float price;
     private float rating;
@@ -38,24 +38,28 @@ public class Activity {
         this.amtPeople = amtPeople;
     }
 
-    public Activity(long provider_id, float price, String description, String category, String neededEquip, int amtPeople) {
-        this.provider_id = provider_id;
-        this.price = price;
-        this.description = description;
-        this.category = category;
-        this.neededEquip = neededEquip;
-        this.amtPeople = amtPeople;
-    }
+	public Activity(long provider_id, float price, String description, String category, String neededEquip, int amtPeople) {
+		this.provider_id = provider_id;
+		this.price = price;
+		this.description = description;
+		this.category = category;
+		this.neededEquip = neededEquip;
+		this.amtPeople = amtPeople;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public Activity() {
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	}
 
-    public long getProvider_id() {
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public long getProvider_id() {
         return provider_id;
     }
 

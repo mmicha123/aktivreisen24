@@ -34,4 +34,12 @@ public class ActivityService {
 
 	}
 
+	public int getAddComments(Activity obj) {
+		return activityDao.getAddComments(obj);
+	}
+
+	public int addComment(long id, String comment) {
+		return activityDao.addComment(id, comment);
+	}
+
 }

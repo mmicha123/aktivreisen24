@@ -1,15 +1,14 @@
 package net.aktivreisen24.api;
 
+import net.aktivreisen24.model.Account;
 import net.aktivreisen24.model.Vacation;
 import net.aktivreisen24.repository.JdbcVacationRepo;
+import net.aktivreisen24.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SiteController {
@@ -18,6 +17,12 @@ public class SiteController {
 
 	@Autowired
 	JdbcVacationRepo jdbcVacationRepo;
+
+	private final AccountService accountService;
+
+	public SiteController(AccountService accountService) {
+		this.accountService = accountService;
+	}
 
 	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
 	public String showHome(Vacation vacation, Model model) {
@@ -30,12 +35,29 @@ public class SiteController {
 
 	@RequestMapping(value = {"/blog"}, method = RequestMethod.GET)
 	public String showBlog(Model model) {
-		return "blog";
+		return "order";
 	}
 
 	@RequestMapping(value = {"/contact"}, method = RequestMethod.GET)
 	public String showContact(Model model) {
 		return "contact";
+	}
+
+	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+	public String showLogin(Model model) {
+		return "login";
+	}
+
+	@RequestMapping(value = {"/register"}, method = RequestMethod.GET)
+	public String showRegister(Model model) {
+
+		return "register";
+	}
+
+	@RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
+	public String showProfile(Model model) {
+
+		return "profile";
 	}
 
 	@RequestMapping(value = {"/addVacation"}, method = RequestMethod.GET)

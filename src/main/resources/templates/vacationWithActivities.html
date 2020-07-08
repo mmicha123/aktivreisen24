@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Aktivreisen24</a>
+          <a class="navbar-brand" href="index">Aktivreisen24</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -33,9 +33,9 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="index" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="vacations" class="nav-link">Urlaube</a></li>
-                <li class="nav-item"><a href="services" class="nav-link">Profil</a></li>
-                <li class="nav-item"><a href="about" class="nav-link">Login</a></li>
-                <li class="nav-item"><a href="contact" class="nav-link">Registrieren</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile">Profil</a></li>
+                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="register">Registrieren</a></li>
 
                 <li class="nav-item"><a href="addVacation" class="nav-link">Reiseziel hinzufügen</a></li>
             </ul>
@@ -128,42 +128,80 @@
     <div class="container">
         <div class="row block-9">
             <div class="col-md-6 pr-md-5">
-                <form action="#" method="post" th:action="@{/addVacation/add}" th:object="${vacation}">
+                <form action="#" autocomplete="off" method="get" th:action="@{/showVacationOrder}">
 
                     <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Check In">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Check Out">
-                        </label>
-                    </div>
+                        <label>Urlaubsziel:</label>
+                        <div class="field-icon-wrap">
 
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control px-3 py-3" name="street" placeholder="Aktivität 1">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control px-3 py-3" name="zipCode" placeholder="Aktivität 2">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control px-3 py-3" name="city" placeholder="Aktivität 3">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control px-3 py-3" name="country" placeholder="Aktivität 4">
-                        </label>
+                            <select class="form-control" id="vacation" name="vacation">
+                                <option th:text="${vacation.title}"
+                                        th:value="${vacation.id}"></option>
+                            </select>
+                        </div>
+
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Zeige Bestellbestätigung" class="btn btn-primary py-3 px-5">
+                        <label>Check In</label>
+                        <div class="field-icon-wrap">
+                            <div class="icon"><span class="icon-calendar"></span></div>
+                            <input class="form-control" id="checkin_date" name="checkInDate" type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Check Out</label>
+                        <div class="field-icon-wrap">
+                            <div class="icon"><span class="icon-calendar"></span></div>
+                            <input class="form-control" id="checkout_date" name="checkOutDate" type="date">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Activity 1:</label>
+                        <div class="field-icon-wrap">
+
+                            <select class="form-control" id="activity1" name="activity1">
+                                <option th:each="activity:${activities}" th:text="${activity.category}"
+                                        th:value="${activity.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Activity 2:</label>
+                        <div class="field-icon-wrap">
+
+                            <select class="form-control" id="activity2" name="activity2">
+                                <option th:each="activity:${activities}" th:text="${activity.category}"
+                                        th:value="${activity.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Activity 3:</label>
+                        <div class="field-icon-wrap">
+
+                            <select class="form-control" id="activity3" name="activity3">
+                                <option th:each="activity:${activities}" th:text="${activity.category}"
+                                        th:value="${activity.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Activity 4:</label>
+                        <div class="field-icon-wrap">
+                            <select class="form-control" id="activity4" name="activity4">
+                                <option th:each="activity:${activities}" th:text="${activity.category}"
+                                        th:value="${activity.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary py-3 px-5" type="submit" value="Zeige Buchungsübersicht">
                     </div>
                 </form>
 

@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Aktivreisen24</a>
+        <a class="navbar-brand" href="index">Aktivreisen24</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -33,9 +33,9 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="index" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="vacations" class="nav-link">Urlaube</a></li>
-                <li class="nav-item"><a href="services" class="nav-link">Profil</a></li>
-                <li class="nav-item"><a href="about" class="nav-link">Login</a></li>
-                <li class="nav-item"><a href="contact" class="nav-link">Registrieren</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile">Profil</a></li>
+                <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="register">Registrieren</a></li>
 
                 <li class="nav-item"><a href="addVacation" class="nav-link">Reiseziel hinzufügen</a></li>
             </ul>
@@ -74,9 +74,8 @@
 
                 <ul class="specs">
                     <li>
-                        <div class="price"><strong>Preis: </strong><sup>$</sup><span class="number"
-                                                                                     th:inline="text">[[${activity.price}]]</span><sub>/pro
-                            Nacht</sub></div>
+                        <div class="price"><strong>Preis: </strong><sup>€</sup><span class="number" th:inline="text">[[${activity.price}]]</span>
+                        </div>
                     </li>
 
 
@@ -103,62 +102,63 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-4">
 
+
+            <div class="col-md-6 col-lg-4" th:each="comment : ${comments}">
                 <div class="block-33">
                     <div class="vcard d-flex mb-3">
-                        <div class="image align-self-center"><img src="images/person_3.jpg" alt="Person here"></div>
+                        <div class="image align-self-center"><img alt="Person here" src="/images/unknown.png"></div>
                         <div class="name-text align-self-center">
-                            <h2 class="heading">Martin Newmansfield</h2>
-                            <span class="meta">Satisfied Customer</span>
+                            <h2 class="heading">Anonym</h2>
+                            <span class="meta">4/5</span>
                         </div>
                     </div>
                     <div class="text">
                         <blockquote>
-                            <p>&rdquo; [[${activity.comments[0]}]] &ldquo;</p>
+                            <p>&rdquo; [[${comment}]] &ldquo;</p>
                         </blockquote>
                     </div>
                 </div>
-
             </div>
-            <div class="col-md-6 col-lg-4">
 
-                <div class="block-33">
-                    <div class="vcard d-flex mb-3">
-                        <div class="image align-self-center"><img src="images/person_2.jpg" alt="Person here"></div>
-                        <div class="name-text align-self-center">
-                            <h2 class="heading">Nancy Green</h2>
-                            <span class="meta">Satisfied Customer</span>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <blockquote>
-                            <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque
-                                dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae
-                                error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-                        </blockquote>
-                    </div>
-                </div>
 
+        </div>
+    </div>
+</div>
+
+<div class="site-section ">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-7 section-heading">
+                <span class="subheading-sm">Reviews</span>
+                <h2 class="heading">Deine Bewertung</h2>
             </div>
-            <div class="col-md-6 col-lg-4">
+        </div>
+        <div class="row block-9">
+            <div class="col-md-6 pr-md-5">
+                <form action="#" method="post" th:action="@{/addComment}" th:object="${activity}">
 
-                <div class="block-33">
-                    <div class="vcard d-flex mb-3">
-                        <div class="image align-self-center"><img src="images/person_1.jpg" alt="Person here"></div>
-                        <div class="name-text align-self-center">
-                            <h2 class="heading">Elizabeth Charles</h2>
-                            <span class="meta">Satisfied Customer</span>
+                    <div class="form-group">
+                        <label>Bewertung</label>
+                        <div class="field-icon-wrap">
+
+                            <select class="form-control" id="activityhtfdh" name="activityID">
+                                <option th:text="${activity.id}" th:value="${activity.id}"></option>
+                            </select>
                         </div>
                     </div>
-                    <div class="text">
-                        <blockquote>
-                            <p>&rdquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque
-                                dolore esse veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae
-                                error ad itaque inventore accusantium tempore dolores sunt. &ldquo;</p>
-                        </blockquote>
+
+                    <div class="form-group">
+                        <label>
+                            <textarea cols="50" id="textarea" name="ownComment" placeholder="Deine Bewertung:"
+                                      rows="4"></textarea>
+                        </label>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-primary py-3 px-5" type="submit" value="Login">
+                    </div>
+                </form>
 
             </div>
         </div>
