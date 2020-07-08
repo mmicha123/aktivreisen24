@@ -225,8 +225,17 @@ public class JdbcVacationRepo implements VacationDao {
 
     @Override
     public List<Vacation> findVacationsByFilter(String bestSeason, String country, Float priceFrom, Float priceTo) {
+        if(bestSeason.equals("1"))
+            bestSeason = null;
+        if(country.equals("1"))
+            country = null;
+        if(priceFrom == 1)
+            priceFrom = null;
+        if(priceTo == 1)
+            priceTo = null;
 
-        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = ? AND country = ? and price > ? and price < ?", new Object[]{bestSeason, country, priceFrom, priceTo}, (rs, rowNum) ->
+
+        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = (SELECT coalesce(NULL, ?)) AND country = (SELECT coalesce(NULL, ?)) and price > (SELECT coalesce(NULL, ?)) and price < (SELECT coalesce(NULL, ?))", new Object[]{bestSeason, country, priceFrom, priceTo}, (rs, rowNum) ->
                 new Vacation(
                         rs.getLong("vacation_id"),
                         rs.getLong("owner_id"),
