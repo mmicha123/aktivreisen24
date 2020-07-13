@@ -227,7 +227,7 @@ public class JdbcVacationRepo implements VacationDao {
     public List<Vacation> findVacationsByFilter(String bestSeason, String country, Float priceFrom, Float priceTo) {
 
 
-        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = ? AND country = ? AND price > ? AND price > ?",
+        return jdbcTemplate.query("SELECT * FROM ar_vacation WHERE best_season = ? AND country = ? AND price > ? AND price < ?",
                 new Object[]{bestSeason, country, priceFrom, priceTo}, (rs, rowNum) ->
                         new Vacation(
                                 rs.getLong("vacation_id"),

@@ -219,7 +219,7 @@ INSERT INTO ar_comments(super_id, comment) VALUES (2, 'Sehr freundliche Mitarbei
 
 INSERT INTO ar_vacation(owner_id, title, address, zip, city, country, price, rating, best_season,
                         picture_url)
-VALUES (4, 'Golden Tulip Porto Gaia Hotel & Spa', 'R. da Bélgica 86', 4400044, 'Vila Nova de Gaia', 'Portugal', 60, 3.6,
+VALUES (4, 'Golden Tulip Porto Gaia Hotel & Spa', 'R. da Bélgica 86', 4404, 'Vila Nova de Gaia', 'Portugal', 60, 3.6,
         'Sommer', 'https://www.hotelbeds.com/giata/00/004315/004315a_hb_a_035.jpg?width=1000');
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
@@ -243,7 +243,7 @@ INSERT INTO ar_comments(super_id, comment) VALUES (4, 'Sehr unterhaltsames Hotel
 
 INSERT INTO ar_vacation(owner_id, title, address, zip, city, country, price, rating, best_season,
                         picture_url)
-VALUES (4, 'Hotel Pension Villa Klothilde', 'Skiliftstraße 2', 5700, 'CITY', 'Zell am See', 119, 4.7, 'Winter',
+VALUES (4, 'Hotel Pension Villa Klothilde', 'Skiliftstraße 2', 5700, 'Zell am See', 'Österreich', 119, 4.7, 'Winter',
         'https://media-cdn.holidaycheck.com/w_1280,h_720,c_fill,q_80/ugc/images/ad98de02-59eb-4af4-9a8c-1e991355be5c');
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
@@ -283,7 +283,7 @@ INSERT INTO ar_comments(super_id, comment) VALUES (8, 'Einfaches gutes Hotel. Di
 
 INSERT INTO ar_vacation(owner_id, title, address, zip, city, country, price, rating, best_season,
                         picture_url)
-VALUES (4, 'Krymwood Flats Wynwood', '145 NW 29th St', 33127, 'CITY', 'Miami', 109, 3.4, 'Sommer',
+VALUES (4, 'Krymwood Flats Wynwood', '145 NW 29th St', 33127, 'Miami', 'Vereinigte Staaten', 109, 3.4, 'Sommer',
         'https://media-cdn.tripadvisor.com/media/vr-splice-j/05/e5/07/a6.jpg');
 
 INSERT INTO ar_commentsupertable VALUES (DEFAULT);
